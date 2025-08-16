@@ -1,0 +1,1 @@
+"""Restaurant setup module for Phase 1."""
