@@ -61,3 +61,25 @@ Customers are unauthenticated users who can view the public-facing menu.
 | Use Case | API Endpoints |
 | :--- | :--- |
 | **As a Customer, I can view the public menu** for a restaurant to decide what I want to order. | `GET /menu/public` |
+
+---
+
+### Workflows
+
+This section describes the end-to-end user flows for key processes in the system.
+
+#### Restaurant Acquisition Workflow (As Implemented)
+
+This workflow describes how a new restaurant owner onboards their restaurant onto the platform using the current self-service model.
+
+1.  **Discover and Sign Up:** A prospective restaurant owner learns about the system and navigates to the sign-up page.
+2.  **Submit Setup Form:** The owner fills out a single form with:
+    *   Restaurant details (name, address, etc.)
+    *   Their personal details for the primary admin account (name, email, password).
+3.  **System Provisioning (Automatic):** The user submits the form by making a request to the `POST /setup` endpoint. The system automatically and immediately performs the following actions in a single transaction:
+    *   Creates a new `Organization` to act as the top-level container.
+    *   Creates a new `Restaurant` linked to the organization.
+    *   Creates a new `User` account with the "admin" role, linked to the restaurant and organization.
+4.  **Confirmation and Next Steps:** The system returns a success message, confirming that the restaurant is set up. The new Restaurant Manager can immediately use their credentials to log in via the `POST /auth/login` endpoint and start configuring their menu and managing their restaurant.
+
+*__Note:__ This self-service workflow differs from a model that includes a manual approval step by a platform super-admin. The current implementation prioritizes immediate onboarding.*
