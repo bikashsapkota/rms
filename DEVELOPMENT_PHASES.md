@@ -187,7 +187,7 @@ CREATE POLICY modifiers_isolation ON modifiers
     USING (organization_id = current_setting('app.current_organization_id')::UUID);
 ```
 
-#### **Core APIs (20 endpoints)**
+#### **Core APIs (31 endpoints)**
 
 1. **Authentication & Users** (7 endpoints)
    - `POST /auth/login` - User login
@@ -198,14 +198,22 @@ CREATE POLICY modifiers_isolation ON modifiers
    - `POST /users` - Create user
    - `PUT /users/{id}` - Update user
 
-2. **Menu Categories** (5 endpoints)
+2. **Restaurant Setup** (1 endpoint)
+   - `POST /setup` - Submit a new restaurant application
+
+3. **Platform Management** (3 endpoints)
+   - `GET /platform/applications` - List pending restaurant applications
+   - `POST /platform/applications/{org_id}/approve` - Approve a restaurant application
+   - `POST /platform/applications/{org_id}/reject` - Reject a restaurant application
+
+4. **Menu Categories** (5 endpoints)
    - `GET /menu/categories` - List categories
    - `POST /menu/categories` - Create category
    - `GET /menu/categories/{id}` - Get category
    - `PUT /menu/categories/{id}` - Update category
    - `DELETE /menu/categories/{id}` - Delete category
 
-3. **Menu Items** (8 endpoints)
+5. **Menu Items** (8 endpoints)
    - `GET /menu/items` - List items with filters
    - `POST /menu/items` - Create item
    - `GET /menu/items/{id}` - Get item details
@@ -214,6 +222,15 @@ CREATE POLICY modifiers_isolation ON modifiers
    - `PUT /menu/items/{id}/availability` - Toggle availability
    - `POST /menu/items/{id}/image` - Upload item image
    - `GET /menu/public` - Public menu for customers
+   - `PUT /menu/items/{item_id}/set-as-category-cover` - Set an item's image as the category cover
+
+6. **Menu Modifiers** (6 endpoints)
+   - `POST /menu/modifiers` - Create a new modifier
+   - `GET /menu/modifiers` - List all modifiers
+   - `PUT /menu/modifiers/{id}` - Update a modifier
+   - `DELETE /menu/modifiers/{id}` - Delete a modifier
+   - `POST /menu/items/{item_id}/modifiers` - Assign modifier to an item
+   - `DELETE /menu/items/{item_id}/modifiers/{modifier_id}` - Remove modifier from an item
 
 ### **Phase 1 Implementation Strategy**
 
@@ -281,11 +298,15 @@ REVOKE BYPASSRLS FROM restaurant_user_role;
 
 ### **Phase 1 Deliverables**
 ✅ **Multi-tenant database schema implemented from day 1**  
-✅ **Single restaurant can be configured (with hidden org layer)**  
-✅ **Staff can log in and manage basic operations**  
+✅ **New restaurants can apply for setup via an application process**
+✅ **Admin approval workflow for new restaurant applications**
+✅ **Platform admin role for managing applications**
+✅ **Staff can log in and manage basic operations (once approved)**
 ✅ **Menu categories and items can be created**  
 ✅ **Public menu API for customer viewing**  
 ✅ **Image upload for menu items**  
+✅ **Menu item modifiers can be created, managed, and assigned**
+✅ **A menu item's image can be designated as the cover image for its category**
 ✅ **Basic role-based access (admin, staff)**  
 ✅ **All code designed for multi-tenant (but used single-tenant)**  
 ✅ **Zero-migration path to multi-tenant in Phase 4**
