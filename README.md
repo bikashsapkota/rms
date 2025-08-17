@@ -518,7 +518,7 @@ app/
 
 ## 🚦 API Endpoints Overview
 
-### **Phase 1: Foundation & Menu Management (24 endpoints)**
+### **Phase 1: Foundation & Menu Management (30 endpoints)**
 
 #### **Authentication & Users** (7 endpoints)
 - `POST /auth/login` - User authentication
@@ -553,6 +553,14 @@ app/
 - `PUT /menu/items/{id}/availability` - Toggle availability
 - `POST /menu/items/{id}/image` - Upload item image
 - `GET /menu/public` - Public menu for customers
+
+#### **Menu Modifiers** (6 endpoints)
+- `POST /menu/modifiers` - Create a new modifier
+- `GET /menu/modifiers` - List all modifiers
+- `PUT /menu/modifiers/{id}` - Update a modifier
+- `DELETE /menu/modifiers/{id}` - Delete a modifier
+- `POST /menu/items/{item_id}/modifiers` - Assign modifier to an item
+- `DELETE /menu/items/{item_id}/modifiers/{modifier_id}` - Remove modifier from an item
 
 ### **Future Phases Preview**
 - **Phase 2**: +35 endpoints (Tables & Reservations)

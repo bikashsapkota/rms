@@ -47,6 +47,12 @@ The Restaurant Manager is responsible for the day-to-day operations of a single 
 | **As a Restaurant Manager, I can view the details of a specific menu item** to check its properties. | `GET /menu/items/{id}` |
 | **As a Restaurant Manager, I can update a menu item's** details, such as its price or description. | `PUT /menu/items/{id}` |
 | **As a Restaurant Manager, I can delete a menu item** if it is no longer offered. | `DELETE /menu/items/{id}` |
+| **As a Restaurant Manager, I can create menu item modifiers** (e.g., "Extra Cheese", "Large Size") with price adjustments, so I can offer customizations. | `POST /menu/modifiers` |
+| **As a Restaurant Manager, I can view all available modifiers** for my restaurant. | `GET /menu/modifiers` |
+| **As a Restaurant Manager, I can update a modifier's** details, such as its name or price. | `PUT /menu/modifiers/{id}` |
+| **As a Restaurant Manager, I can delete a modifier** if it's no longer offered. | `DELETE /menu/modifiers/{id}` |
+| **As a Restaurant Manager, I can assign modifiers to a menu item** so customers can see their options. | `POST /menu/items/{item_id}/modifiers` |
+| **As a Restaurant Manager, I can remove modifiers from a menu item**. | `DELETE /menu/items/{item_id}/modifiers/{modifier_id}` |
 | **As a Restaurant Manager, I can log in to the system** to access my management dashboard. | `POST /auth/login` |
 | **As a Restaurant Manager, I can view my own user profile** to see my account details. | `GET /auth/me` |
 | **As a Restaurant Manager, I can log out of the system** to securely end my session. | `POST /auth/logout` |

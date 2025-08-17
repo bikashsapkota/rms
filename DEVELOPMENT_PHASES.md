@@ -187,7 +187,7 @@ CREATE POLICY modifiers_isolation ON modifiers
     USING (organization_id = current_setting('app.current_organization_id')::UUID);
 ```
 
-#### **Core APIs (24 endpoints)**
+#### **Core APIs (30 endpoints)**
 
 1. **Authentication & Users** (7 endpoints)
    - `POST /auth/login` - User login
@@ -222,6 +222,14 @@ CREATE POLICY modifiers_isolation ON modifiers
    - `PUT /menu/items/{id}/availability` - Toggle availability
    - `POST /menu/items/{id}/image` - Upload item image
    - `GET /menu/public` - Public menu for customers
+
+6. **Menu Modifiers** (6 endpoints)
+   - `POST /menu/modifiers` - Create a new modifier
+   - `GET /menu/modifiers` - List all modifiers
+   - `PUT /menu/modifiers/{id}` - Update a modifier
+   - `DELETE /menu/modifiers/{id}` - Delete a modifier
+   - `POST /menu/items/{item_id}/modifiers` - Assign modifier to an item
+   - `DELETE /menu/items/{item_id}/modifiers/{modifier_id}` - Remove modifier from an item
 
 ### **Phase 1 Implementation Strategy**
 
@@ -296,6 +304,7 @@ REVOKE BYPASSRLS FROM restaurant_user_role;
 ✅ **Menu categories and items can be created**  
 ✅ **Public menu API for customer viewing**  
 ✅ **Image upload for menu items**  
+✅ **Menu item modifiers can be created, managed, and assigned**
 ✅ **Basic role-based access (admin, staff)**  
 ✅ **All code designed for multi-tenant (but used single-tenant)**  
 ✅ **Zero-migration path to multi-tenant in Phase 4**
