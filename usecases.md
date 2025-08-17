@@ -4,6 +4,18 @@ Based on the `README.md` and `DEVELOPMENT_PHASES.md` files, here are the detaile
 
 ---
 
+### 👑 **Use Cases for Super Admin**
+
+The Super Admin has platform-level permissions to manage the entire system, including approving new restaurants.
+
+| Use Case                                                              | API Endpoints                                        |
+| :-------------------------------------------------------------------- | :--------------------------------------------------- |
+| **As a Super Admin, I can view a list of pending restaurant applications** so that I can review new submissions. | `GET /platform/applications`                         |
+| **As a Super Admin, I can approve a pending application** to allow the restaurant to join the platform.       | `POST /platform/applications/{org_id}/approve`     |
+| **As a Super Admin, I can reject a pending application** to deny access to the platform.                        | `POST /platform/applications/{org_id}/reject`      |
+
+---
+
 ### 🏢 **Use Cases for Organization Admin**
 
 The Organization Admin is responsible for managing the entire organization, which can contain multiple restaurants.
@@ -68,18 +80,14 @@ Customers are unauthenticated users who can view the public-facing menu.
 
 This section describes the end-to-end user flows for key processes in the system.
 
-#### Restaurant Acquisition Workflow (As Implemented)
+#### Restaurant Acquisition Workflow (With Admin Approval)
 
-This workflow describes how a new restaurant owner onboards their restaurant onto the platform using the current self-service model.
+This workflow describes how a new restaurant owner onboards their restaurant onto the platform using an approval-based model.
 
-1.  **Discover and Sign Up:** A prospective restaurant owner learns about the system and navigates to the sign-up page.
-2.  **Submit Setup Form:** The owner fills out a single form with:
-    *   Restaurant details (name, address, etc.)
-    *   Their personal details for the primary admin account (name, email, password).
-3.  **System Provisioning (Automatic):** The user submits the form by making a request to the `POST /setup` endpoint. The system automatically and immediately performs the following actions in a single transaction:
-    *   Creates a new `Organization` to act as the top-level container.
-    *   Creates a new `Restaurant` linked to the organization.
-    *   Creates a new `User` account with the "admin" role, linked to the restaurant and organization.
-4.  **Confirmation and Next Steps:** The system returns a success message, confirming that the restaurant is set up. The new Restaurant Manager can immediately use their credentials to log in via the `POST /auth/login` endpoint and start configuring their menu and managing their restaurant.
-
-*__Note:__ This self-service workflow differs from a model that includes a manual approval step by a platform super-admin. The current implementation prioritizes immediate onboarding.*
+1.  **Application Submission:** A prospective restaurant owner fills out a sign-up form with their restaurant and admin user details.
+2.  **System Creates Pending Account:** Upon submission (`POST /setup`), the system creates an `Organization` and `Restaurant` with a `pending` status. The associated `User` account is created but remains inactive. The applicant is shown a "Pending Approval" message.
+3.  **Super Admin Review:** A Super Admin logs in and views a list of all pending applications (`GET /platform/applications`).
+4.  **Application Approval/Rejection:** The Super Admin reviews the application details and decides to either:
+    *   **Approve:** The Super Admin calls `POST /platform/applications/{org_id}/approve`. The system changes the status of the organization/restaurant to `approved` and activates the associated admin user account. An email notification is sent to the restaurant owner.
+    *   **Reject:** The Super Admin calls `POST /platform/applications/{org_id}/reject`. The system changes the status to `rejected` and sends a notification. The data may be archived or deleted based on platform policy.
+5.  **Activation and Login:** Once approved, the Restaurant Manager receives the confirmation email and can now log in with their credentials (`POST /auth/login`) to start managing their restaurant.

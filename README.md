@@ -495,7 +495,7 @@ app/
 
 | Role | Scope | Permissions | Use Case |
 |------|-------|-------------|----------|
-| **Super Admin** | Platform | All organizations, system management | Platform maintenance |
+| **Super Admin** | Platform | System management, approve/reject new restaurants | Platform maintenance, onboarding new clients |
 | **Org Admin** | Organization | All restaurants in organization | Chain/franchise owner |
 | **Restaurant Manager** | Restaurant | Single restaurant management | Restaurant manager |
 | **Staff** | Restaurant | Limited operations (menu viewing, order processing) | Waitstaff, kitchen |
@@ -505,6 +505,7 @@ app/
 
 | Action | Super Admin | Org Admin | Manager | Staff | Customer |
 |--------|-------------|-----------|---------|-------|----------|
+| Approve/Reject Restaurants | ✅ | ❌ | ❌ | ❌ | ❌ |
 | Create organization | ✅ | ❌ | ❌ | ❌ | ❌ |
 | Manage restaurant settings | ✅ | ✅ | ✅ | ❌ | ❌ |
 | Create/update menu items | ✅ | ✅ | ✅ | ❌ | ❌ |
@@ -517,7 +518,7 @@ app/
 
 ## 🚦 API Endpoints Overview
 
-### **Phase 1: Foundation & Menu Management (20 endpoints)**
+### **Phase 1: Foundation & Menu Management (24 endpoints)**
 
 #### **Authentication & Users** (7 endpoints)
 - `POST /auth/login` - User authentication
@@ -528,10 +529,13 @@ app/
 - `POST /users` - Create user account
 - `PUT /users/{id}` - Update user profile
 
-#### **Restaurant Management** (3 endpoints)
-- `GET /restaurants` - List accessible restaurants
-- `POST /restaurants` - Create restaurant (org admin+)
-- `PUT /restaurants/{id}` - Update restaurant settings
+#### **Restaurant Setup** (1 endpoint)
+- `POST /setup` - Submit a new restaurant application
+
+#### **Platform Management** (3 endpoints)
+- `GET /platform/applications` - List pending restaurant applications
+- `POST /platform/applications/{org_id}/approve` - Approve a restaurant application
+- `POST /platform/applications/{org_id}/reject` - Reject a restaurant application
 
 #### **Menu Categories** (5 endpoints)
 - `GET /menu/categories` - List categories
@@ -540,12 +544,15 @@ app/
 - `PUT /menu/categories/{id}` - Update category
 - `DELETE /menu/categories/{id}` - Delete category
 
-#### **Menu Items** (5 endpoints)
+#### **Menu Items** (8 endpoints)
 - `GET /menu/items` - List menu items with filtering
 - `POST /menu/items` - Create menu item
 - `GET /menu/items/{id}` - Get item details
 - `PUT /menu/items/{id}` - Update menu item
 - `DELETE /menu/items/{id}` - Delete menu item
+- `PUT /menu/items/{id}/availability` - Toggle availability
+- `POST /menu/items/{id}/image` - Upload item image
+- `GET /menu/public` - Public menu for customers
 
 ### **Future Phases Preview**
 - **Phase 2**: +35 endpoints (Tables & Reservations)
