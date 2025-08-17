@@ -53,6 +53,7 @@ The Restaurant Manager is responsible for the day-to-day operations of a single 
 | **As a Restaurant Manager, I can delete a modifier** if it's no longer offered. | `DELETE /menu/modifiers/{id}` |
 | **As a Restaurant Manager, I can assign modifiers to a menu item** so customers can see their options. | `POST /menu/items/{item_id}/modifiers` |
 | **As a Restaurant Manager, I can remove modifiers from a menu item**. | `DELETE /menu/items/{item_id}/modifiers/{modifier_id}` |
+| **As a Restaurant Manager, I can set a menu item's image as the cover image for its category**, to provide a visual thumbnail for the category. | `PUT /menu/items/{item_id}/set-as-category-cover` |
 | **As a Restaurant Manager, I can log in to the system** to access my management dashboard. | `POST /auth/login` |
 | **As a Restaurant Manager, I can view my own user profile** to see my account details. | `GET /auth/me` |
 | **As a Restaurant Manager, I can log out of the system** to securely end my session. | `POST /auth/logout` |

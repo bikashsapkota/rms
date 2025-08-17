@@ -518,7 +518,7 @@ app/
 
 ## 🚦 API Endpoints Overview
 
-### **Phase 1: Foundation & Menu Management (30 endpoints)**
+### **Phase 1: Foundation & Menu Management (31 endpoints)**
 
 #### **Authentication & Users** (7 endpoints)
 - `POST /auth/login` - User authentication
@@ -553,6 +553,7 @@ app/
 - `PUT /menu/items/{id}/availability` - Toggle availability
 - `POST /menu/items/{id}/image` - Upload item image
 - `GET /menu/public` - Public menu for customers
+- `PUT /menu/items/{item_id}/set-as-category-cover` - Set an item's image as the category cover
 
 #### **Menu Modifiers** (6 endpoints)
 - `POST /menu/modifiers` - Create a new modifier
