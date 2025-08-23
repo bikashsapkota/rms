@@ -9,6 +9,8 @@ from app.modules.auth.schemas import (
     LoginResponse,
     RefreshTokenResponse,
     LogoutResponse,
+    CreateAdminRequest,
+    CreateAdminResponse,
 )
 from app.modules.auth.service import AuthService
 
@@ -76,6 +78,24 @@ async def get_current_user_info(
     """Get current user information."""
     user_details = await AuthService.get_user_details(session, current_user)
     return UserReadWithDetails(**user_details)
+
+
+@router.post("/create-admin", response_model=CreateAdminResponse)
+async def create_admin_user(
+    admin_data: CreateAdminRequest,
+    session: AsyncSession = Depends(get_session),
+):
+    """Create admin user with organization. No authentication required for first admin."""
+    result = await AuthService.create_admin_with_organization(
+        session=session,
+        email=admin_data.email,
+        password=admin_data.password,
+        full_name=admin_data.full_name,
+        organization_name=admin_data.organization_name,
+        restaurant_name=admin_data.restaurant_name,
+    )
+    
+    return CreateAdminResponse(**result)
 
 
 # User management endpoints (require appropriate permissions)

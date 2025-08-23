@@ -1,0 +1,119 @@
+{
+  "success": true,
+  "functionality_percentage": 80.0,
+  "total_endpoints_tested": 20,
+  "working_endpoints": 16,
+  "failed_endpoints": 4,
+  "errors": [
+    "Restaurant info: 404",
+    "Reservation availability: 404",
+    "Reservation booking: 404",
+    "Waitlist entry: 404"
+  ],
+  "structure_analysis": {
+    "categories": {
+      "tables": [
+        "/api/v1/tables/",
+        "/api/v1/tables/{table_id}",
+        "/api/v1/tables/{table_id}/status",
+        "/api/v1/tables/layout/restaurant",
+        "/api/v1/tables/availability/overview",
+        "/api/v1/tables/analytics/utilization"
+      ],
+      "reservations": [
+        "/api/v1/reservations/",
+        "/api/v1/reservations/{reservation_id}",
+        "/api/v1/reservations/{reservation_id}/checkin",
+        "/api/v1/reservations/{reservation_id}/seat",
+        "/api/v1/reservations/{reservation_id}/no-show",
+        "/api/v1/reservations/today/overview",
+        "/api/v1/reservations/calendar/view",
+        "/api/v1/reservations/analytics/summary",
+        "/api/v1/public/reservations/{restaurant_id}/availability",
+        "/api/v1/public/reservations/{restaurant_id}/book",
+        "/api/v1/public/reservations/{restaurant_id}/waitlist",
+        "/api/v1/public/reservations/{restaurant_id}/status",
+        "/api/v1/public/reservations/{restaurant_id}/cancel/{reservation_id}",
+        "/api/v1/public/reservations/{restaurant_id}/waitlist/status",
+        "/api/v1/public/reservations/{restaurant_id}/info"
+      ],
+      "availability": [
+        "/api/v1/menu/items/{item_id}/availability",
+        "/api/v1/availability/slots",
+        "/api/v1/availability/calendar",
+        "/api/v1/availability/alternatives",
+        "/api/v1/availability/capacity/optimization",
+        "/api/v1/availability/overview",
+        "/api/v1/waitlist/availability/check"
+      ],
+      "waitlist": [
+        "/api/v1/waitlist/",
+        "/api/v1/waitlist/{waitlist_id}",
+        "/api/v1/waitlist/{waitlist_id}/notify",
+        "/api/v1/waitlist/{waitlist_id}/seated",
+        "/api/v1/waitlist/analytics/summary"
+      ],
+      "public": [
+        "/api/v1/menu/public"
+      ],
+      "auth": [
+        "/api/v1/auth/login",
+        "/api/v1/auth/logout",
+        "/api/v1/auth/refresh",
+        "/api/v1/auth/me"
+      ],
+      "other": [
+        "/setup",
+        "/health",
+        "/",
+        "/api/v1/users/",
+        "/api/v1/users/{user_id}",
+        "/api/v1/menu/categories/",
+        "/api/v1/menu/categories/{category_id}",
+        "/api/v1/menu/items/",
+        "/api/v1/menu/items/{item_id}",
+        "/api/v1/menu/items/{item_id}/image",
+        "/api/v1/menu/items/{item_id}/set-as-category-cover",
+        "/api/v1/menu/modifiers/",
+        "/api/v1/menu/modifiers/{modifier_id}",
+        "/api/v1/menu/modifiers/items/{item_id}/modifiers",
+        "/api/v1/menu/modifiers/items/{item_id}/modifiers/{modifier_id}",
+        "/api/v1/platform/applications",
+        "/api/v1/platform/applications/{application_id}",
+        "/api/v1/platform/applications/{application_id}/approve",
+        "/api/v1/platform/applications/{application_id}/reject",
+        "/api/v1/platform/applications/stats/summary",
+        "/api/v1/platform/applications/submit"
+      ]
+    },
+    "total_phase2_endpoints": 34,
+    "endpoint_counts": {
+      "tables": 6,
+      "reservations": 15,
+      "availability": 7,
+      "waitlist": 5,
+      "public": 1,
+      "auth": 4,
+      "other": 21
+    }
+  },
+  "detailed_results": {
+    "public_endpoints": {
+      "total_endpoints": 4,
+      "working_endpoints": 0,
+      "failed_endpoints": 4,
+      "errors": [
+        "Restaurant info: 404",
+        "Reservation availability: 404",
+        "Reservation booking: 404",
+        "Waitlist entry: 404"
+      ]
+    },
+    "authenticated_endpoints": {
+      "total_endpoints": 16,
+      "working_endpoints": 16,
+      "failed_endpoints": 0,
+      "errors": []
+    }
+  }
+}
