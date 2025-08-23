@@ -14,6 +14,14 @@ from app.shared.models.user import User
 from app.modules.menu.models.category import MenuCategory
 from app.modules.menu.models.item import MenuItem
 from app.modules.menu.models.modifier import Modifier
+from app.modules.menu.models.menu_item_modifier_link import MenuItemModifierLink
+from app.modules.platform.models.application import RestaurantApplication
+from app.modules.tables.models.table import Table
+from app.modules.tables.models.reservation import Reservation
+from app.modules.tables.models.waitlist import ReservationWaitlist
+from app.modules.orders.models.order import Order
+from app.modules.orders.models.order_item import OrderItem, OrderItemModifier
+from app.modules.orders.models.payment import Payment
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

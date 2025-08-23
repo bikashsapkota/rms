@@ -1,0 +1,115 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: D
+        - generic [ref=e8]: Demo Restaurant
+      - navigation [ref=e9]:
+        - link "Overview" [ref=e10] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e11] [cursor=pointer]
+          - generic [ref=e14] [cursor=pointer]: Overview
+        - link "Menu Management" [ref=e15] [cursor=pointer]:
+          - /url: /dashboard/menu
+          - img [ref=e16] [cursor=pointer]
+          - generic [ref=e19] [cursor=pointer]: Menu Management
+        - link "Reservations" [ref=e20] [cursor=pointer]:
+          - /url: /dashboard/reservations
+          - img [ref=e21] [cursor=pointer]
+          - generic [ref=e26] [cursor=pointer]: Reservations
+        - link "Staff" [ref=e27] [cursor=pointer]:
+          - /url: /dashboard/staff
+          - img [ref=e28] [cursor=pointer]
+          - generic [ref=e33] [cursor=pointer]: Staff
+        - link "Analytics" [ref=e34] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e35] [cursor=pointer]
+          - generic [ref=e40] [cursor=pointer]: Analytics
+        - link "Settings" [ref=e41] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e42] [cursor=pointer]
+          - generic [ref=e45] [cursor=pointer]: Settings
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e49]: D
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: Demo Manager
+            - paragraph [ref=e52]: manager@demorestaurant.com
+        - button "Sign Out" [ref=e53]:
+          - img
+          - text: Sign Out
+    - generic [ref=e54]:
+      - generic [ref=e56]:
+        - heading "Menu Management" [level=1] [ref=e59]
+        - generic [ref=e60]:
+          - button [ref=e61]:
+            - img
+          - link "View Site" [ref=e63] [cursor=pointer]:
+            - /url: /
+            - button "View Site" [ref=e64]
+          - generic [ref=e65]:
+            - generic [ref=e67]: D
+            - generic [ref=e68]:
+              - paragraph [ref=e69]: Demo Manager
+              - paragraph [ref=e70]: manager@demorestaurant.com
+      - main [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - heading "Menu Management" [level=1] [ref=e75]
+              - paragraph [ref=e76]: Manage your restaurant's menu items and categories.
+            - generic [ref=e77]:
+              - button "Refresh" [ref=e78]:
+                - img
+                - text: Refresh
+              - button "Add New Item" [ref=e79]:
+                - img
+                - text: Add New Item
+          - generic [ref=e80]:
+            - generic [ref=e82]: Filters & Search
+            - generic [ref=e84]:
+              - generic [ref=e86]:
+                - img [ref=e87]
+                - textbox "Search menu items..." [ref=e90]
+              - combobox [ref=e91]:
+                - generic: All Categories
+                - img
+              - button "Hide Unavailable" [ref=e92]:
+                - img
+                - text: Hide Unavailable
+          - generic [ref=e94]:
+            - generic [ref=e96]:
+              - img [ref=e97]
+              - paragraph [ref=e100]: Photo coming soon
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - heading "Demo Item" [level=3] [ref=e103]
+                - generic [ref=e104]: Available
+              - paragraph [ref=e105]: This is demo data - backend connection failed
+              - generic [ref=e106]:
+                - generic [ref=e107]: $16.99
+                - generic [ref=e108]: Appetizers
+              - generic [ref=e109]:
+                - button "Disable" [ref=e110]:
+                  - img
+                  - text: Disable
+                - button [ref=e111]:
+                  - img
+                - button [ref=e112]:
+                  - img
+  - generic [ref=e117] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e118] [cursor=pointer]:
+      - img [ref=e119] [cursor=pointer]
+    - generic [ref=e123] [cursor=pointer]:
+      - button "Open issues overlay" [ref=e124] [cursor=pointer]:
+        - generic [ref=e125] [cursor=pointer]:
+          - generic [ref=e126] [cursor=pointer]: "0"
+          - generic [ref=e127] [cursor=pointer]: "1"
+        - generic [ref=e128] [cursor=pointer]: Issue
+      - button "Collapse issues badge" [ref=e129] [cursor=pointer]:
+        - img [ref=e130] [cursor=pointer]
+  - alert [ref=e132]
+```

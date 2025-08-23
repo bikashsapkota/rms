@@ -7,6 +7,10 @@ if TYPE_CHECKING:
     from app.shared.models.user import User
     from app.modules.menu.models.category import MenuCategory
     from app.modules.menu.models.item import MenuItem
+    from app.modules.menu.models.modifier import Modifier
+    from app.modules.tables.models.table import Table
+    from app.modules.tables.models.reservation import Reservation
+    from app.modules.orders.models.order import Order
 
 
 class RestaurantBase(SQLModel):
@@ -28,6 +32,10 @@ class Restaurant(RestaurantBase, TenantBaseModel, table=True):
     users: List["User"] = Relationship(back_populates="restaurant")
     menu_categories: List["MenuCategory"] = Relationship(back_populates="restaurant")
     menu_items: List["MenuItem"] = Relationship(back_populates="restaurant")
+    modifiers: List["Modifier"] = Relationship(back_populates="restaurant")
+    tables: List["Table"] = Relationship(back_populates="restaurant")
+    reservations: List["Reservation"] = Relationship(back_populates="restaurant")
+    # orders: List["Order"] = Relationship(back_populates="restaurant")
 
 
 class RestaurantCreate(RestaurantBase):
@@ -58,3 +66,5 @@ class RestaurantReadWithDetails(RestaurantRead):
     user_count: int = 0
     category_count: int = 0
     menu_item_count: int = 0
+    table_count: int = 0
+    reservation_count: int = 0

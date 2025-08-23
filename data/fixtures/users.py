@@ -5,6 +5,26 @@ Sample user data for development and testing.
 from typing import List, Dict, Any
 
 SAMPLE_USERS: List[Dict[str, Any]] = [
+    # Demo Restaurant Users (matching frontend credentials)
+    {
+        "email": "manager@demorestaurant.com",
+        "full_name": "Demo Manager",
+        "role": "manager",
+        "password": "password123",
+        "organization_name": "Demo Restaurant Organization",
+        "restaurant_name": "Demo Restaurant",
+        "is_active": True,
+    },
+    {
+        "email": "staff@demorestaurant.com",
+        "full_name": "Demo Staff",
+        "role": "staff",
+        "password": "password123",
+        "organization_name": "Demo Restaurant Organization",
+        "restaurant_name": "Demo Restaurant",
+        "is_active": True,
+    },
+    
     # Pizza Palace Corporation Users
     {
         "email": "admin@pizzapalace.com",

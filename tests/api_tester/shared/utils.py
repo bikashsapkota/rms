@@ -535,3 +535,27 @@ def print_api_response(response: APIResponse, operation_description: str = "API 
     status_emoji = "✅" if response.is_success() else "❌"
     print(f"{status_emoji} {'SUCCESS' if response.is_success() else 'FAILED'}")
     print(f"{'=' * 50}")
+
+
+# Standalone utility functions for Phase 2 testing
+def print_test_header(title: str, emoji: str = "🧪"):
+    """Print formatted test header"""
+    print(f"\n{'=' * 60}")
+    print(f"{emoji} {title}")
+    print(f"{'=' * 60}")
+
+def print_success(message: str):
+    """Print success message with green checkmark"""
+    print(f"✅ {message}")
+
+def print_error(message: str):
+    """Print error message with red X"""
+    print(f"❌ {message}")
+
+def print_info(message: str):
+    """Print info message with blue info icon"""
+    print(f"ℹ️  {message}")
+
+def print_warning(message: str):
+    """Print warning message with yellow warning icon"""
+    print(f"⚠️  {message}")

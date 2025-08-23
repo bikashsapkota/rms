@@ -1,0 +1,74 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button [ref=e7]:
+          - img
+        - heading "Menu Management" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - button [ref=e11]:
+          - img
+        - link "View Site" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - button "View Site" [ref=e14]
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - heading "Menu Management" [level=1] [ref=e19]
+            - paragraph [ref=e20]: Manage your restaurant's menu items and categories.
+          - generic [ref=e21]:
+            - button "Refresh" [ref=e22]:
+              - img
+              - text: Refresh
+            - button "Add New Item" [ref=e23]:
+              - img
+              - text: Add New Item
+        - generic [ref=e24]:
+          - generic [ref=e26]: Filters & Search
+          - generic [ref=e28]:
+            - generic [ref=e30]:
+              - img [ref=e31]
+              - textbox "Search menu items..." [ref=e34]
+            - combobox [ref=e35]:
+              - generic: All Categories
+              - img
+            - button "Hide Unavailable" [ref=e36]:
+              - img
+              - text: Hide Unavailable
+        - generic [ref=e38]:
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - paragraph [ref=e43]: Photo coming soon
+          - generic [ref=e44]:
+            - generic [ref=e45]:
+              - heading "Demo Item" [level=3] [ref=e46]
+              - generic [ref=e47]: Available
+            - paragraph [ref=e48]: This is demo data - backend connection failed
+            - generic [ref=e49]:
+              - generic [ref=e50]: $16.99
+              - generic [ref=e51]: Appetizers
+            - generic [ref=e52]:
+              - button "Disable" [ref=e53]:
+                - img
+                - text: Disable
+              - button [ref=e54]:
+                - img
+              - button [ref=e55]:
+                - img
+  - generic [ref=e60] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e61] [cursor=pointer]:
+      - img [ref=e62] [cursor=pointer]
+    - generic [ref=e65] [cursor=pointer]:
+      - button "Open issues overlay" [ref=e66] [cursor=pointer]:
+        - generic [ref=e67] [cursor=pointer]:
+          - generic [ref=e68] [cursor=pointer]: "0"
+          - generic [ref=e69] [cursor=pointer]: "1"
+        - generic [ref=e70] [cursor=pointer]: Issue
+      - button "Collapse issues badge" [ref=e71] [cursor=pointer]:
+        - img [ref=e72] [cursor=pointer]
+  - alert [ref=e74]
+```

@@ -1,0 +1,123 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "D Demo Restaurant" [ref=e6]:
+          - /url: /
+          - generic [ref=e8]: D
+          - generic [ref=e9]: Demo Restaurant
+        - generic [ref=e10]:
+          - link "Book Table" [ref=e11]:
+            - /url: /book
+            - button "Book Table" [ref=e12]:
+              - img
+              - text: Book Table
+          - link "Staff Login" [ref=e13]:
+            - /url: /auth/login
+            - button "Staff Login" [ref=e14]
+          - button [ref=e15]:
+            - img
+    - main [ref=e16]:
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - heading "Book Your Table" [level=1] [ref=e21]
+          - paragraph [ref=e22]: Reserve your spot for an exceptional dining experience at Demo Restaurant. Choose your preferred date and time below.
+        - generic [ref=e24]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: "1"
+              - generic [ref=e29]: Select Date & Time
+            - generic [ref=e31]:
+              - generic [ref=e32]: "2"
+              - generic [ref=e33]: Your Information
+          - generic [ref=e34]:
+            - generic [ref=e36]: When would you like to dine?
+            - generic [ref=e38]:
+              - generic [ref=e39]:
+                - generic [ref=e40]:
+                  - img [ref=e41]
+                  - text: Date
+                - textbox "Date" [ref=e43]
+              - generic [ref=e44]:
+                - generic [ref=e45]:
+                  - img [ref=e46]
+                  - text: Party Size
+                - combobox [ref=e51]:
+                  - generic: Select party size
+                  - img
+              - generic [ref=e52]:
+                - generic [ref=e53]:
+                  - img [ref=e54]
+                  - text: Available Times
+                - generic [ref=e57]: Choose date & party size first
+    - contentinfo [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - generic [ref=e64]: D
+              - generic [ref=e65]: Demo Restaurant
+            - paragraph [ref=e66]: Experience exceptional dining with authentic flavors, fresh ingredients, and warm hospitality in the heart of the city.
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - img [ref=e69]
+                - generic [ref=e72]: 123 Main Street, Downtown, City 12345
+              - generic [ref=e73]:
+                - img [ref=e74]
+                - generic [ref=e76]: (555) 123-4567
+              - generic [ref=e77]:
+                - img [ref=e78]
+                - generic [ref=e81]: info@demorestaurant.com
+          - generic [ref=e82]:
+            - heading "Quick Links" [level=3] [ref=e83]
+            - list [ref=e84]:
+              - listitem [ref=e85]:
+                - link "Home" [ref=e86]:
+                  - /url: /
+              - listitem [ref=e87]:
+                - link "Menu" [ref=e88]:
+                  - /url: /menu
+              - listitem [ref=e89]:
+                - link "Reservations" [ref=e90]:
+                  - /url: /book
+              - listitem [ref=e91]:
+                - link "Contact" [ref=e92]:
+                  - /url: /contact
+              - listitem [ref=e93]:
+                - link "About Us" [ref=e94]:
+                  - /url: /about
+          - generic [ref=e95]:
+            - heading "Hours" [level=3] [ref=e96]
+            - generic [ref=e98]:
+              - img [ref=e99]
+              - generic [ref=e102]:
+                - paragraph [ref=e103]: "Mon - Thu: 11:00 AM - 10:00 PM"
+                - paragraph [ref=e104]: "Fri - Sat: 11:00 AM - 11:00 PM"
+                - paragraph [ref=e105]: "Sunday: 12:00 PM - 9:00 PM"
+            - generic [ref=e106]:
+              - heading "Follow Us" [level=4] [ref=e107]
+              - generic [ref=e108]:
+                - link "Facebook" [ref=e109]:
+                  - /url: "#"
+                  - img [ref=e110]
+                - link "Instagram" [ref=e112]:
+                  - /url: "#"
+                  - img [ref=e113]
+                - link "Twitter" [ref=e115]:
+                  - /url: "#"
+                  - img [ref=e116]
+        - generic [ref=e118]:
+          - paragraph [ref=e119]: © 2025 Demo Restaurant. All rights reserved.
+          - paragraph [ref=e120]:
+            - link "Privacy Policy" [ref=e121]:
+              - /url: /privacy
+            - text: "|"
+            - link "Terms of Service" [ref=e122]:
+              - /url: /terms
+  - button "Open Next.js Dev Tools" [ref=e128] [cursor=pointer]:
+    - img [ref=e129] [cursor=pointer]
+  - alert [ref=e134]
+```

@@ -337,3 +337,46 @@ async def test_authentication_flow(client: APITestClient) -> bool:
     print("🔐 Authentication flow test completed")
     
     return True
+
+
+# Standalone authentication function for Phase 2 tests
+async def authenticate_user(session, api_base: str, 
+                           email: str = DEFAULT_TEST_ADMIN_EMAIL,
+                           password: str = DEFAULT_TEST_ADMIN_PASSWORD) -> Optional[str]:
+    """
+    Authenticate user and return access token for Phase 2 tests
+    
+    Args:
+        session: aiohttp ClientSession
+        api_base: Base API URL (e.g., "http://localhost:8000/api/v1")
+        email: Email for authentication
+        password: Password for authentication
+        
+    Returns:
+        Access token string or None if authentication fails
+    """
+    
+    try:
+        # Try main credentials first
+        auth_data = {"email": email, "password": password}
+        
+        async with session.post(f"{api_base}/auth/login", json=auth_data) as response:
+            if response.status == 200:
+                result = await response.json()
+                return result.get("access_token") or result.get("token")
+            
+        # Try fallback credentials
+        for creds in FALLBACK_CREDENTIALS:
+            try:
+                async with session.post(f"{api_base}/auth/login", json=creds) as response:
+                    if response.status == 200:
+                        result = await response.json()
+                        return result.get("access_token") or result.get("token")
+            except Exception:
+                continue
+                
+        return None
+        
+    except Exception as e:
+        print(f"Authentication error: {e}")
+        return None

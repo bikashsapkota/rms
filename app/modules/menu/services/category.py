@@ -183,3 +183,25 @@ class MenuCategoryService:
             "item_count": total_items,
             "active_item_count": active_items,
         }
+    
+    @staticmethod
+    async def set_cover_image(
+        session: AsyncSession,
+        category_id: str,
+        image_url: str,
+        organization_id: str,
+        restaurant_id: str,
+    ) -> bool:
+        """Set the cover image for a category."""
+        category = await MenuCategoryService.get_category_by_id(
+            session, category_id, organization_id, restaurant_id
+        )
+        
+        if not category:
+            return False
+        
+        category.cover_image_url = image_url
+        session.add(category)
+        await session.commit()
+        
+        return True

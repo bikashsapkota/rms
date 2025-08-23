@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "summary": {
+    "total_tests": 38,
+    "passed_tests": 38,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "test_data_created": {
+      "tables": 4,
+      "reservations": 3,
+      "waitlist_entries": 2
+    }
+  },
+  "detailed_results": {
+    "table_management": {
+      "total_tests": 9,
+      "passed_tests": 9,
+      "failed_tests": 0,
+      "errors": []
+    },
+    "reservation_management": {
+      "total_tests": 11,
+      "passed_tests": 11,
+      "failed_tests": 0,
+      "errors": []
+    },
+    "availability_system": {
+      "total_tests": 5,
+      "passed_tests": 5,
+      "failed_tests": 0,
+      "errors": []
+    },
+    "waitlist_management": {
+      "total_tests": 9,
+      "passed_tests": 9,
+      "failed_tests": 0,
+      "errors": []
+    },
+    "public_apis": {
+      "total_tests": 4,
+      "passed_tests": 4,
+      "failed_tests": 0,
+      "errors": []
+    }
+  },
+  "errors": [],
+  "created_data": {
+    "tables": [
+      "f5b2ce49-7586-4407-bab5-edb53e2e74ea",
+      "0367e277-c6bb-4182-bbd1-39c0d6454ca1",
+      "208ebccb-cfeb-469c-bc84-28f43f5dc552",
+      "8a44f72c-9c0f-4436-ae7e-933dffb23f9c"
+    ],
+    "reservations": [
+      "bbe3db75-42b9-4d10-832d-c0acc2099259",
+      "8a9432f4-042f-4490-ad58-d1c0ac78fe2d",
+      "e382e95d-9079-452f-bda7-28c3227e9bad"
+    ],
+    "waitlist": [
+      "5e36ae32-f095-44c6-8a98-d89d02182e2a",
+      "7361e4d8-4fcb-4c5d-bcd9-54863e811d38"
+    ]
+  }
+}

@@ -6,6 +6,13 @@ from typing import List, Dict, Any
 
 SAMPLE_ORGANIZATIONS: List[Dict[str, Any]] = [
     {
+        "name": "Demo Restaurant Organization",
+        "organization_type": "independent",
+        "subscription_tier": "basic",
+        "billing_email": "billing@demorestaurant.com",
+        "is_active": True,
+    },
+    {
         "name": "Pizza Palace Corporation",
         "organization_type": "chain",
         "subscription_tier": "professional",

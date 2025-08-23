@@ -1,0 +1,160 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button [ref=e7]:
+          - img
+        - heading "Reservations" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - button [ref=e11]:
+          - img
+        - link "View Site" [ref=e13] [cursor=pointer]:
+          - /url: /
+          - button "View Site" [ref=e14]
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - heading "Reservations" [level=1] [ref=e19]
+            - paragraph [ref=e20]: Manage restaurant reservations and bookings.
+          - generic [ref=e22]: 3 reservations
+        - generic [ref=e23]:
+          - generic [ref=e26]:
+            - img [ref=e27]
+            - generic [ref=e30]:
+              - paragraph [ref=e31]: Pending
+              - paragraph [ref=e32]: "1"
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - generic [ref=e39]:
+              - paragraph [ref=e40]: Confirmed
+              - paragraph [ref=e41]: "2"
+          - generic [ref=e44]:
+            - img [ref=e45]
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: Today's Guests
+              - paragraph [ref=e52]: "12"
+          - generic [ref=e55]:
+            - img [ref=e56]
+            - generic [ref=e58]:
+              - paragraph [ref=e59]: This Week
+              - paragraph [ref=e60]: "4"
+        - generic [ref=e61]:
+          - generic [ref=e63]: Filters & Search
+          - generic [ref=e65]:
+            - generic [ref=e67]:
+              - img [ref=e68]
+              - textbox "Search by name, email, phone, or reservation ID..." [ref=e71]
+            - combobox [ref=e72]:
+              - generic: Today
+              - img
+            - combobox [ref=e73]:
+              - generic: All Status
+              - img
+        - generic [ref=e74]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - heading "John Smith" [level=3] [ref=e80]
+                - generic [ref=e82]:
+                  - img [ref=e83]
+                  - generic [ref=e86]: confirmed
+                - generic [ref=e87]: RES-001
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - img [ref=e90]
+                  - generic [ref=e92]: Thursday, August 21, 2025
+                - generic [ref=e93]:
+                  - img [ref=e94]
+                  - generic [ref=e97]: 7:00 PM
+                - generic [ref=e98]:
+                  - img [ref=e99]
+                  - generic [ref=e104]: 4 guests
+                - generic [ref=e105]:
+                  - img [ref=e106]
+                  - generic [ref=e108]: (555) 123-4567
+              - generic [ref=e109]:
+                - img [ref=e110]
+                - generic [ref=e113]: john.smith@email.com
+              - generic [ref=e114]:
+                - img [ref=e115]
+                - generic [ref=e117]: Window table preferred, celebrating anniversary
+            - generic [ref=e118]:
+              - button "Complete" [ref=e119]:
+                - img
+                - text: Complete
+              - button "Cancel" [ref=e120]:
+                - img
+                - text: Cancel
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - heading "Sarah Johnson" [level=3] [ref=e126]
+                - generic [ref=e128]:
+                  - img [ref=e129]
+                  - generic [ref=e132]: confirmed
+                - generic [ref=e133]: RES-002
+              - generic [ref=e134]:
+                - generic [ref=e135]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Thursday, August 21, 2025
+                - generic [ref=e139]:
+                  - img [ref=e140]
+                  - generic [ref=e143]: 7:30 PM
+                - generic [ref=e144]:
+                  - img [ref=e145]
+                  - generic [ref=e150]: 2 guests
+                - generic [ref=e151]:
+                  - img [ref=e152]
+                  - generic [ref=e154]: (555) 234-5678
+              - generic [ref=e155]:
+                - img [ref=e156]
+                - generic [ref=e159]: sarah.j@email.com
+            - generic [ref=e160]:
+              - button "Complete" [ref=e161]:
+                - img
+                - text: Complete
+              - button "Cancel" [ref=e162]:
+                - img
+                - text: Cancel
+          - generic [ref=e165]:
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - heading "Mike Davis" [level=3] [ref=e168]
+                - generic [ref=e170]:
+                  - img [ref=e171]
+                  - generic [ref=e174]: pending
+                - generic [ref=e175]: RES-003
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - img [ref=e178]
+                  - generic [ref=e180]: Thursday, August 21, 2025
+                - generic [ref=e181]:
+                  - img [ref=e182]
+                  - generic [ref=e185]: 8:00 PM
+                - generic [ref=e186]:
+                  - img [ref=e187]
+                  - generic [ref=e192]: 6 guests
+                - generic [ref=e193]:
+                  - img [ref=e194]
+                  - generic [ref=e196]: (555) 345-6789
+              - generic [ref=e197]:
+                - img [ref=e198]
+                - generic [ref=e201]: mike.davis@email.com
+              - generic [ref=e202]:
+                - img [ref=e203]
+                - generic [ref=e205]: High chair needed for baby
+            - generic [ref=e206]:
+              - button "Confirm" [ref=e207]:
+                - img
+                - text: Confirm
+              - button "Cancel" [ref=e208]:
+                - img
+                - text: Cancel
+  - button "Open Next.js Dev Tools" [ref=e214] [cursor=pointer]:
+    - img [ref=e215] [cursor=pointer]
+  - alert [ref=e218]
+```

@@ -1,0 +1,499 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "D Demo Restaurant" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e8] [cursor=pointer]: D
+          - generic [ref=e9] [cursor=pointer]: Demo Restaurant
+        - navigation [ref=e10]:
+          - link "Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+          - link "Menu" [ref=e12] [cursor=pointer]:
+            - /url: /menu
+          - link "Reservations" [ref=e13] [cursor=pointer]:
+            - /url: /book
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e15]:
+          - link "Book Table" [ref=e16] [cursor=pointer]:
+            - /url: /book
+            - button "Book Table" [ref=e17]:
+              - img
+              - text: Book Table
+          - link "Staff Login" [ref=e18] [cursor=pointer]:
+            - /url: /auth/login
+            - button "Staff Login" [ref=e19]
+    - main [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - heading "Welcome to Demo Restaurant" [level=1] [ref=e27]:
+                - text: Welcome to
+                - generic [ref=e28]: Demo Restaurant
+              - paragraph [ref=e29]: Experience exceptional dining with authentic flavors, fresh ingredients, and warm hospitality in the heart of downtown.
+              - generic [ref=e30]:
+                - link "Make Reservation" [ref=e31] [cursor=pointer]:
+                  - /url: /book
+                  - button "Make Reservation" [ref=e32]:
+                    - img
+                    - text: Make Reservation
+                - link "View Menu" [ref=e33] [cursor=pointer]:
+                  - /url: /menu
+                  - button "View Menu" [ref=e34]:
+                    - img
+                    - text: View Menu
+              - generic [ref=e35]:
+                - generic [ref=e36]:
+                  - img [ref=e37]
+                  - generic [ref=e40]: 123 Main Street, Downtown
+                - generic [ref=e41]:
+                  - img [ref=e42]
+                  - generic [ref=e44]: (555) 123-4567
+                - generic [ref=e45]:
+                  - img [ref=e46]
+                  - generic [ref=e49]: Open Now
+            - generic [ref=e53]:
+              - generic [ref=e55]: D
+              - paragraph [ref=e56]:
+                - text: Beautiful restaurant interior
+                - text: photo coming soon
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - img [ref=e63]
+              - generic [ref=e66]: "Today: 11:00 AM - 10:00 PM"
+            - generic [ref=e68]: 🎉 Happy Hour 4-6 PM - 20% off appetizers
+            - generic [ref=e69]:
+              - img [ref=e70]
+              - generic [ref=e72]: Call (555) 123-4567 for takeout
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - heading "🍽️ Chef's Favorites" [level=2] [ref=e76]
+            - paragraph [ref=e77]: Discover our most beloved dishes, crafted with the finest ingredients and perfected by our talented chefs.
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e81]:
+                - generic [ref=e83]: T
+                - paragraph [ref=e84]: Photo coming soon
+              - generic [ref=e85]:
+                - generic [ref=e86]:
+                  - heading "Truffle Pasta" [level=3] [ref=e87]
+                  - generic [ref=e88]:
+                    - img [ref=e89]
+                    - generic [ref=e91]: "4.8"
+                - paragraph [ref=e92]: Homemade pasta with black truffle and parmesan cheese
+                - generic [ref=e93]:
+                  - generic [ref=e94]: $24.99
+                  - generic [ref=e95]: Available
+            - generic [ref=e96]:
+              - generic [ref=e98]:
+                - generic [ref=e100]: G
+                - paragraph [ref=e101]: Photo coming soon
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - heading "Grilled Salmon" [level=3] [ref=e104]
+                  - generic [ref=e105]:
+                    - img [ref=e106]
+                    - generic [ref=e108]: "4.8"
+                - paragraph [ref=e109]: Fresh Atlantic salmon with lemon herb butter
+                - generic [ref=e110]:
+                  - generic [ref=e111]: $28.99
+                  - generic [ref=e112]: Available
+            - generic [ref=e113]:
+              - generic [ref=e115]:
+                - generic [ref=e117]: C
+                - paragraph [ref=e118]: Photo coming soon
+              - generic [ref=e119]:
+                - generic [ref=e120]:
+                  - heading "Chocolate Soufflé" [level=3] [ref=e121]
+                  - generic [ref=e122]:
+                    - img [ref=e123]
+                    - generic [ref=e125]: "4.8"
+                - paragraph [ref=e126]: Warm chocolate soufflé with vanilla ice cream
+                - generic [ref=e127]:
+                  - generic [ref=e128]: $12.99
+                  - generic [ref=e129]: Available
+          - link "View Full Menu" [ref=e131] [cursor=pointer]:
+            - /url: /menu
+            - button "View Full Menu" [ref=e132]:
+              - text: View Full Menu
+              - img
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - heading "📅 Reserve Your Table" [level=2] [ref=e136]
+            - paragraph [ref=e137]: Book your dining experience in just a few clicks
+          - generic [ref=e138]:
+            - generic [ref=e140]: Find Available Times
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - generic [ref=e143]:
+                  - generic [ref=e144]:
+                    - img [ref=e145]
+                    - text: Date
+                  - textbox "Date" [ref=e147]
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - img [ref=e150]
+                    - text: Time
+                  - combobox [ref=e153]:
+                    - generic: Select time
+                    - img
+                - generic [ref=e154]:
+                  - generic [ref=e155]:
+                    - img [ref=e156]
+                    - text: Guests
+                  - combobox [ref=e161]:
+                    - generic: Party size
+                    - img
+              - button "Check Availability →" [ref=e163]
+              - generic [ref=e164]:
+                - heading "Quick Book" [level=3] [ref=e165]
+                - generic [ref=e166]:
+                  - button "Tonight (7:00 PM)" [ref=e167]
+                  - button "Tomorrow (7:00 PM)" [ref=e168]
+                  - button "This Weekend (7:00 PM)" [ref=e169]
+              - generic [ref=e170]:
+                - paragraph [ref=e171]: Need assistance with your reservation?
+                - paragraph [ref=e172]:
+                  - text: Call us at
+                  - generic [ref=e173]: (555) 123-4567
+                - paragraph [ref=e174]:
+                  - text: or email
+                  - generic [ref=e175]: reservations@restaurant.com
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - heading "Our Story" [level=2] [ref=e180]
+            - generic [ref=e181]:
+              - paragraph [ref=e182]: For over 20 years, we've been serving exceptional cuisine made with love and the freshest ingredients. Our family recipes have been passed down through generations, creating an authentic dining experience that brings people together.
+              - paragraph [ref=e183]: Located in the heart of downtown, Demo Restaurant combines traditional cooking methods with modern culinary techniques to create dishes that honor our heritage while exciting contemporary palates.
+              - paragraph [ref=e184]: Every dish tells a story, every meal creates memories, and every guest becomes part of our extended family.
+            - generic [ref=e185]:
+              - generic [ref=e186]:
+                - img [ref=e188]
+                - generic [ref=e191]:
+                  - heading "Farm to Table" [level=4] [ref=e192]
+                  - paragraph [ref=e193]: Fresh local ingredients
+              - generic [ref=e194]:
+                - img [ref=e196]
+                - generic [ref=e198]:
+                  - heading "Made with Love" [level=4] [ref=e199]
+                  - paragraph [ref=e200]: Family recipes
+              - generic [ref=e201]:
+                - img [ref=e203]
+                - generic [ref=e208]:
+                  - heading "Community First" [level=4] [ref=e209]
+                  - paragraph [ref=e210]: Supporting local
+              - generic [ref=e211]:
+                - img [ref=e213]
+                - generic [ref=e216]:
+                  - heading "Award Winning" [level=4] [ref=e217]
+                  - paragraph [ref=e218]: Recognized excellence
+            - link "Learn More About Us" [ref=e219] [cursor=pointer]:
+              - /url: /about
+              - button "Learn More About Us" [ref=e220]
+          - generic [ref=e221]:
+            - generic [ref=e222]:
+              - generic [ref=e224]:
+                - generic [ref=e226]: MR
+                - paragraph [ref=e227]: Chef Marco Rossi
+                - paragraph [ref=e228]: Photo coming soon
+              - generic [ref=e230]:
+                - heading "Chef Marco Rossi" [level=3] [ref=e231]
+                - paragraph [ref=e232]: Owner & Head Chef
+                - generic [ref=e233]:
+                  - generic [ref=e234]: 20+ Years Experience
+                  - generic [ref=e235]: James Beard Nominated
+                - paragraph [ref=e236]: "\"Cooking is not just my profession, it's my passion. Every dish I create is a reflection of my Italian heritage and my commitment to bringing families together around the dinner table.\""
+            - generic [ref=e237]:
+              - generic [ref=e238]:
+                - generic [ref=e239]: 4.8★
+                - generic [ref=e240]: Google Rating
+              - generic [ref=e241]:
+                - generic [ref=e242]: 500+
+                - generic [ref=e243]: 5-Star Reviews
+              - generic [ref=e244]:
+                - generic [ref=e245]: "#1"
+                - generic [ref=e246]: Local Favorite
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - heading "📸 Experience Our Restaurant" [level=2] [ref=e250]
+            - paragraph [ref=e251]: Take a visual journey through our restaurant, from our beautifully crafted dishes to our warm and inviting atmosphere.
+          - generic [ref=e252]:
+            - button "All Photos" [ref=e253]
+            - button "Food" [ref=e254]
+            - button "Interior" [ref=e255]
+            - button "Events" [ref=e256]
+            - button "Our Team" [ref=e257]
+          - generic [ref=e258]:
+            - generic [ref=e260] [cursor=pointer]:
+              - generic [ref=e261] [cursor=pointer]:
+                - generic [ref=e263] [cursor=pointer]: S
+                - paragraph [ref=e264] [cursor=pointer]: Signature Truffle Pasta
+              - generic [ref=e266] [cursor=pointer]: View Photo
+            - generic [ref=e268] [cursor=pointer]:
+              - generic [ref=e269] [cursor=pointer]:
+                - generic [ref=e271] [cursor=pointer]: M
+                - paragraph [ref=e272] [cursor=pointer]: Main Dining Room
+              - generic [ref=e274] [cursor=pointer]: View Photo
+            - generic [ref=e276] [cursor=pointer]:
+              - generic [ref=e277] [cursor=pointer]:
+                - generic [ref=e279] [cursor=pointer]: G
+                - paragraph [ref=e280] [cursor=pointer]: Grilled Salmon
+              - generic [ref=e282] [cursor=pointer]: View Photo
+            - generic [ref=e284] [cursor=pointer]:
+              - generic [ref=e285] [cursor=pointer]:
+                - generic [ref=e287] [cursor=pointer]: P
+                - paragraph [ref=e288] [cursor=pointer]: Private Event Space
+              - generic [ref=e290] [cursor=pointer]: View Photo
+            - generic [ref=e292] [cursor=pointer]:
+              - generic [ref=e293] [cursor=pointer]:
+                - generic [ref=e295] [cursor=pointer]: C
+                - paragraph [ref=e296] [cursor=pointer]: Chef at Work
+              - generic [ref=e298] [cursor=pointer]: View Photo
+            - generic [ref=e300] [cursor=pointer]:
+              - generic [ref=e301] [cursor=pointer]:
+                - generic [ref=e303] [cursor=pointer]: W
+                - paragraph [ref=e304] [cursor=pointer]: Wine Selection
+              - generic [ref=e306] [cursor=pointer]: View Photo
+            - generic [ref=e308] [cursor=pointer]:
+              - generic [ref=e309] [cursor=pointer]:
+                - generic [ref=e311] [cursor=pointer]: C
+                - paragraph [ref=e312] [cursor=pointer]: Chocolate Soufflé
+              - generic [ref=e314] [cursor=pointer]: View Photo
+            - generic [ref=e316] [cursor=pointer]:
+              - generic [ref=e317] [cursor=pointer]:
+                - generic [ref=e319] [cursor=pointer]: W
+                - paragraph [ref=e320] [cursor=pointer]: Wedding Reception
+              - generic [ref=e322] [cursor=pointer]: View Photo
+          - generic [ref=e323]:
+            - heading "Follow us for more photos" [level=3] [ref=e324]
+            - paragraph [ref=e325]:
+              - generic [ref=e326]: "@demo-restaurant"
+              - text: on Instagram
+            - generic [ref=e327]:
+              - button "Follow on Instagram" [ref=e328]
+              - button "Like on Facebook" [ref=e329]
+        - generic [ref=e331]:
+          - generic [ref=e332]:
+            - heading "💬 What Our Guests Say" [level=2] [ref=e333]
+            - paragraph [ref=e334]: Don't just take our word for it. Here's what our valued customers have to say about their dining experience with us.
+          - generic [ref=e335]:
+            - generic [ref=e336]:
+              - generic [ref=e337]: "4.8"
+              - generic [ref=e338]:
+                - img [ref=e339]
+                - img [ref=e341]
+                - img [ref=e343]
+                - img [ref=e345]
+                - img [ref=e347]
+              - generic [ref=e349]: Average Rating
+            - generic [ref=e350]:
+              - generic [ref=e351]: 247+
+              - generic [ref=e352]: Total Reviews
+            - generic [ref=e353]:
+              - generic [ref=e354]: 80%
+              - generic [ref=e355]: 5-Star Reviews
+            - generic [ref=e356]:
+              - generic [ref=e357]: "#1"
+              - generic [ref=e358]: Local Favorite
+          - generic [ref=e359]:
+            - generic [ref=e362]:
+              - img [ref=e363]
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - img [ref=e368]
+                  - img [ref=e370]
+                  - img [ref=e372]
+                  - img [ref=e374]
+                  - img [ref=e376]
+                - paragraph [ref=e378]: "\"Amazing food and exceptional service! The truffle pasta was absolutely incredible, and our server was so attentive. Will definitely be coming back!\""
+              - generic [ref=e379]:
+                - generic [ref=e380]:
+                  - generic [ref=e382]: SJ
+                  - generic [ref=e383]:
+                    - generic [ref=e384]:
+                      - generic [ref=e385]: Sarah Johnson
+                      - generic [ref=e386]: Verified
+                    - generic [ref=e387]:
+                      - generic [ref=e388]: 2 days ago
+                      - generic [ref=e389]: •
+                      - generic [ref=e390]: Google
+                - generic [ref=e391]:
+                  - button [ref=e392]:
+                    - img
+                  - button [ref=e393]:
+                    - img
+            - generic [ref=e394]:
+              - button [ref=e395]
+              - button [ref=e396]
+              - button [ref=e397]
+              - button [ref=e398]
+              - button [ref=e399]
+          - generic [ref=e400]:
+            - heading "See all our reviews on" [level=3] [ref=e401]
+            - generic [ref=e402]:
+              - generic [ref=e403]:
+                - generic [ref=e405]: G
+                - generic [ref=e406]:
+                  - generic [ref=e407]: Google
+                  - generic [ref=e408]: 4.8 ★ (150+ reviews)
+              - generic [ref=e409]:
+                - generic [ref=e411]: "Y"
+                - generic [ref=e412]:
+                  - generic [ref=e413]: Yelp
+                  - generic [ref=e414]: 4.7 ★ (80+ reviews)
+              - generic [ref=e415]:
+                - generic [ref=e417]: T
+                - generic [ref=e418]:
+                  - generic [ref=e419]: TripAdvisor
+                  - generic [ref=e420]: 4.9 ★ (17+ reviews)
+        - generic [ref=e422]:
+          - generic [ref=e423]:
+            - heading "📍 Visit Us Today" [level=2] [ref=e424]
+            - paragraph [ref=e425]: Located in the heart of downtown, we're easily accessible and ready to welcome you for an unforgettable dining experience.
+          - generic [ref=e426]:
+            - generic [ref=e430]:
+              - img [ref=e431]
+              - heading "Interactive Map" [level=3] [ref=e434]
+              - paragraph [ref=e435]:
+                - text: 123 Main Street
+                - text: Downtown, City 12345
+              - button "Get Directions" [ref=e436]:
+                - img
+                - text: Get Directions
+            - generic [ref=e438]:
+              - generic [ref=e440]:
+                - heading "Contact Information" [level=3] [ref=e441]
+                - generic [ref=e442]:
+                  - generic [ref=e443]:
+                    - img [ref=e445]
+                    - generic [ref=e448]:
+                      - heading "Address" [level=4] [ref=e449]
+                      - paragraph [ref=e450]:
+                        - text: 123 Main Street
+                        - text: Downtown, City 12345
+                        - text: United States
+                  - generic [ref=e451]:
+                    - img [ref=e453]
+                    - generic [ref=e455]:
+                      - heading "Phone" [level=4] [ref=e456]
+                      - paragraph [ref=e457]: (555) 123-4567
+                      - button "Call Now" [ref=e458]
+                  - generic [ref=e459]:
+                    - img [ref=e461]
+                    - generic [ref=e464]:
+                      - heading "Email" [level=4] [ref=e465]
+                      - paragraph [ref=e466]: info@demorestaurant.com
+                      - button "Send Email" [ref=e467]
+                  - generic [ref=e468]:
+                    - img [ref=e470]
+                    - generic [ref=e474]:
+                      - heading "Parking" [level=4] [ref=e475]
+                      - paragraph [ref=e476]:
+                        - text: Free valet parking available
+                        - text: Street parking also available
+              - generic [ref=e478]:
+                - generic [ref=e479]:
+                  - img [ref=e480]
+                  - heading "Opening Hours" [level=3] [ref=e483]
+                - generic [ref=e484]:
+                  - generic [ref=e485]:
+                    - generic [ref=e486]: Monday - Thursday
+                    - generic [ref=e487]: 11:00 AM - 10:00 PM
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Friday - Saturday
+                    - generic [ref=e490]: 11:00 AM - 11:00 PM
+                  - generic [ref=e491]:
+                    - generic [ref=e492]: Sunday
+                    - generic [ref=e493]: 12:00 PM - 9:00 PM
+                - generic [ref=e494]:
+                  - generic [ref=e497]: Open Now
+                  - paragraph [ref=e498]: Closes at 10:00 PM today
+              - generic [ref=e499]:
+                - button "Get Directions" [ref=e500]:
+                  - img
+                  - text: Get Directions
+                - button "Call Now" [ref=e501]:
+                  - img
+                  - text: Call Now
+              - generic [ref=e503]:
+                - heading "Good to Know" [level=3] [ref=e504]
+                - list [ref=e505]:
+                  - listitem [ref=e506]: • Reservations recommended for dinner
+                  - listitem [ref=e507]: • Walk-ins welcome for lunch
+                  - listitem [ref=e508]: • Private dining rooms available
+                  - listitem [ref=e509]: • Wheelchair accessible
+                  - listitem [ref=e510]: • Full bar with craft cocktails
+                  - listitem [ref=e511]: • Vegetarian and gluten-free options available
+    - contentinfo [ref=e512]:
+      - generic [ref=e513]:
+        - generic [ref=e514]:
+          - generic [ref=e515]:
+            - generic [ref=e516]:
+              - generic [ref=e518]: D
+              - generic [ref=e519]: Demo Restaurant
+            - paragraph [ref=e520]: Experience exceptional dining with authentic flavors, fresh ingredients, and warm hospitality in the heart of the city.
+            - generic [ref=e521]:
+              - generic [ref=e522]:
+                - img [ref=e523]
+                - generic [ref=e526]: 123 Main Street, Downtown, City 12345
+              - generic [ref=e527]:
+                - img [ref=e528]
+                - generic [ref=e530]: (555) 123-4567
+              - generic [ref=e531]:
+                - img [ref=e532]
+                - generic [ref=e535]: info@demorestaurant.com
+          - generic [ref=e536]:
+            - heading "Quick Links" [level=3] [ref=e537]
+            - list [ref=e538]:
+              - listitem [ref=e539]:
+                - link "Home" [ref=e540] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e541]:
+                - link "Menu" [ref=e542] [cursor=pointer]:
+                  - /url: /menu
+              - listitem [ref=e543]:
+                - link "Reservations" [ref=e544] [cursor=pointer]:
+                  - /url: /book
+              - listitem [ref=e545]:
+                - link "Contact" [ref=e546] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e547]:
+                - link "About Us" [ref=e548] [cursor=pointer]:
+                  - /url: /about
+          - generic [ref=e549]:
+            - heading "Hours" [level=3] [ref=e550]
+            - generic [ref=e552]:
+              - img [ref=e553]
+              - generic [ref=e556]:
+                - paragraph [ref=e557]: "Mon - Thu: 11:00 AM - 10:00 PM"
+                - paragraph [ref=e558]: "Fri - Sat: 11:00 AM - 11:00 PM"
+                - paragraph [ref=e559]: "Sunday: 12:00 PM - 9:00 PM"
+            - generic [ref=e560]:
+              - heading "Follow Us" [level=4] [ref=e561]
+              - generic [ref=e562]:
+                - link "Facebook" [ref=e563] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e564] [cursor=pointer]
+                - link "Instagram" [ref=e566] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e567] [cursor=pointer]
+                - link "Twitter" [ref=e569] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e570] [cursor=pointer]
+        - generic [ref=e572]:
+          - paragraph [ref=e573]: © 2025 Demo Restaurant. All rights reserved.
+          - paragraph [ref=e574]:
+            - link "Privacy Policy" [ref=e575] [cursor=pointer]:
+              - /url: /privacy
+            - text: "|"
+            - link "Terms of Service" [ref=e576] [cursor=pointer]:
+              - /url: /terms
+  - button "Open Next.js Dev Tools" [ref=e582] [cursor=pointer]:
+    - img [ref=e583] [cursor=pointer]
+  - alert [ref=e586]
+```

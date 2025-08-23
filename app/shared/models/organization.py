@@ -5,6 +5,7 @@ from app.shared.database.base import BaseModel
 if TYPE_CHECKING:
     from app.shared.models.restaurant import Restaurant
     from app.shared.models.user import User
+    from app.modules.platform.models.application import RestaurantApplication
 
 
 class OrganizationBase(SQLModel):
@@ -31,6 +32,7 @@ class Organization(OrganizationBase, BaseModel, table=True):
     # Relationships
     restaurants: List["Restaurant"] = Relationship(back_populates="organization")
     users: List["User"] = Relationship(back_populates="organization")
+    applications: List["RestaurantApplication"] = Relationship(back_populates="organization")
 
 
 class OrganizationCreate(OrganizationBase):

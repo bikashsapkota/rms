@@ -78,10 +78,35 @@ async def setup_restaurant(
         )
         
     except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Restaurant setup failed: {str(e)}"
-        )
+        error_message = str(e).lower()
+        
+        # Handle specific database constraints and common errors
+        if "unique constraint" in error_message or "duplicate" in error_message:
+            if "email" in error_message:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="An account with this email already exists"
+                )
+            elif "organization" in error_message or "restaurant" in error_message:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="A restaurant with this name already exists"
+                )
+            else:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail="Setup failed due to duplicate data"
+                )
+        elif "invalid" in error_message or "validation" in error_message:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid setup data provided"
+            )
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Restaurant setup failed: {str(e)}"
+            )
 
 
 @router.get(
@@ -97,7 +122,8 @@ async def health_check(session: AsyncSession = Depends(get_session)):
     """
     try:
         # Test database connectivity
-        await session.execute("SELECT 1")
+        from sqlmodel import text
+        await session.exec(text("SELECT 1"))
         database_status = "healthy"
     except Exception:
         database_status = "unhealthy"
@@ -114,6 +140,46 @@ async def health_check(session: AsyncSession = Depends(get_session)):
             "file_upload": "healthy"
         }
     )
+
+
+@router.get(
+    "/health/db",
+    summary="Database Health Check",
+    description="Check database connectivity and health"
+)
+async def database_health_check(session: AsyncSession = Depends(get_session)):
+    """
+    Database-specific health check endpoint.
+    Returns detailed database connection status.
+    """
+    try:
+        # Test database connectivity
+        from sqlmodel import text
+        result = await session.exec(text("SELECT 1 as test"))
+        test_value = result.first()
+        
+        if test_value and test_value == 1:
+            return {
+                "status": "healthy",
+                "database": "connected",
+                "timestamp": datetime.utcnow().isoformat(),
+                "connection_test": "passed"
+            }
+        else:
+            return {
+                "status": "unhealthy", 
+                "database": "connection_failed",
+                "timestamp": datetime.utcnow().isoformat(),
+                "connection_test": "failed"
+            }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "database": "error",
+            "timestamp": datetime.utcnow().isoformat(),
+            "error": str(e),
+            "connection_test": "failed"
+        }
 
 
 @router.get(

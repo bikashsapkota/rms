@@ -6,6 +6,35 @@ from typing import List, Dict, Any
 
 SAMPLE_RESTAURANTS: List[Dict[str, Any]] = [
     {
+        "name": "Demo Restaurant",
+        "organization_name": "Demo Restaurant Organization", 
+        "address": {
+            "street": "123 Demo Street",
+            "city": "Demo City",
+            "state": "CA",
+            "zip": "90001",
+            "country": "US"
+        },
+        "phone": "+1-555-DEMO",
+        "email": "info@demorestaurant.com",
+        "settings": {
+            "timezone": "America/Los_Angeles",
+            "currency": "USD",
+            "tax_rate": 8.25,
+            "service_fee": 3.0,
+            "opening_hours": {
+                "monday": {"open": "11:00", "close": "22:00"},
+                "tuesday": {"open": "11:00", "close": "22:00"},
+                "wednesday": {"open": "11:00", "close": "22:00"},
+                "thursday": {"open": "11:00", "close": "22:00"},
+                "friday": {"open": "11:00", "close": "23:00"},
+                "saturday": {"open": "11:00", "close": "23:00"},
+                "sunday": {"open": "12:00", "close": "21:00"}
+            }
+        },
+        "is_active": True,
+    },
+    {
         "name": "Pizza Palace Downtown",
         "organization_name": "Pizza Palace Corporation",
         "address": {

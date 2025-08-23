@@ -1,0 +1,201 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: D
+        - generic [ref=e8]: Demo Restaurant
+      - navigation [ref=e9]:
+        - link "Overview" [ref=e10] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e11] [cursor=pointer]
+          - generic [ref=e14] [cursor=pointer]: Overview
+        - link "Menu Management" [ref=e15] [cursor=pointer]:
+          - /url: /dashboard/menu
+          - img [ref=e16] [cursor=pointer]
+          - generic [ref=e19] [cursor=pointer]: Menu Management
+        - link "Reservations" [ref=e20] [cursor=pointer]:
+          - /url: /dashboard/reservations
+          - img [ref=e21] [cursor=pointer]
+          - generic [ref=e26] [cursor=pointer]: Reservations
+        - link "Staff" [ref=e27] [cursor=pointer]:
+          - /url: /dashboard/staff
+          - img [ref=e28] [cursor=pointer]
+          - generic [ref=e33] [cursor=pointer]: Staff
+        - link "Analytics" [ref=e34] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e35] [cursor=pointer]
+          - generic [ref=e40] [cursor=pointer]: Analytics
+        - link "Settings" [ref=e41] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e42] [cursor=pointer]
+          - generic [ref=e45] [cursor=pointer]: Settings
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e49]: D
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: Demo Manager
+            - paragraph [ref=e52]: manager@demorestaurant.com
+        - button "Sign Out" [ref=e53]:
+          - img
+          - text: Sign Out
+    - generic [ref=e54]:
+      - generic [ref=e56]:
+        - heading "Reservations" [level=1] [ref=e59]
+        - generic [ref=e60]:
+          - button [ref=e61]:
+            - img
+          - link "View Site" [ref=e63] [cursor=pointer]:
+            - /url: /
+            - button "View Site" [ref=e64]
+          - generic [ref=e65]:
+            - generic [ref=e67]: D
+            - generic [ref=e68]:
+              - paragraph [ref=e69]: Demo Manager
+              - paragraph [ref=e70]: manager@demorestaurant.com
+      - main [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - heading "Reservations" [level=1] [ref=e75]
+              - paragraph [ref=e76]: Manage restaurant reservations and bookings.
+            - generic [ref=e78]: 3 reservations
+          - generic [ref=e79]:
+            - generic [ref=e82]:
+              - img [ref=e83]
+              - generic [ref=e86]:
+                - paragraph [ref=e87]: Pending
+                - paragraph [ref=e88]: "1"
+            - generic [ref=e91]:
+              - img [ref=e92]
+              - generic [ref=e95]:
+                - paragraph [ref=e96]: Confirmed
+                - paragraph [ref=e97]: "2"
+            - generic [ref=e100]:
+              - img [ref=e101]
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: Today's Guests
+                - paragraph [ref=e108]: "12"
+            - generic [ref=e111]:
+              - img [ref=e112]
+              - generic [ref=e117]:
+                - paragraph [ref=e118]: This Week
+                - paragraph [ref=e119]: "4"
+          - generic [ref=e120]:
+            - generic [ref=e122]: Filters & Search
+            - generic [ref=e124]:
+              - generic [ref=e126]:
+                - img [ref=e127]
+                - textbox "Search by name, email, phone, or reservation ID..." [ref=e130]
+              - combobox [ref=e131]:
+                - generic: Today
+                - img
+              - combobox [ref=e132]:
+                - generic: All Status
+                - img
+          - generic [ref=e133]:
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]:
+                  - heading "John Smith" [level=3] [ref=e139]
+                  - generic [ref=e141]:
+                    - img [ref=e142]
+                    - generic [ref=e145]: confirmed
+                  - generic [ref=e146]: RES-001
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - img [ref=e149]
+                    - generic [ref=e154]: Thursday, August 21, 2025
+                  - generic [ref=e155]:
+                    - img [ref=e156]
+                    - generic [ref=e159]: 7:00 PM
+                  - generic [ref=e160]:
+                    - img [ref=e161]
+                    - generic [ref=e166]: 4 guests
+                  - generic [ref=e167]:
+                    - img [ref=e168]
+                    - generic [ref=e170]: (555) 123-4567
+                - generic [ref=e171]:
+                  - img [ref=e172]
+                  - generic [ref=e175]: john.smith@email.com
+                - generic [ref=e176]:
+                  - img [ref=e177]
+                  - generic [ref=e179]: Window table preferred, celebrating anniversary
+              - generic [ref=e180]:
+                - button "Complete" [ref=e181]:
+                  - img
+                  - text: Complete
+                - button "Cancel" [ref=e182]:
+                  - img
+                  - text: Cancel
+            - generic [ref=e185]:
+              - generic [ref=e186]:
+                - generic [ref=e187]:
+                  - heading "Sarah Johnson" [level=3] [ref=e188]
+                  - generic [ref=e190]:
+                    - img [ref=e191]
+                    - generic [ref=e194]: confirmed
+                  - generic [ref=e195]: RES-002
+                - generic [ref=e196]:
+                  - generic [ref=e197]:
+                    - img [ref=e198]
+                    - generic [ref=e203]: Thursday, August 21, 2025
+                  - generic [ref=e204]:
+                    - img [ref=e205]
+                    - generic [ref=e208]: 7:30 PM
+                  - generic [ref=e209]:
+                    - img [ref=e210]
+                    - generic [ref=e215]: 2 guests
+                  - generic [ref=e216]:
+                    - img [ref=e217]
+                    - generic [ref=e219]: (555) 234-5678
+                - generic [ref=e220]:
+                  - img [ref=e221]
+                  - generic [ref=e224]: sarah.j@email.com
+              - generic [ref=e225]:
+                - button "Complete" [ref=e226]:
+                  - img
+                  - text: Complete
+                - button "Cancel" [ref=e227]:
+                  - img
+                  - text: Cancel
+            - generic [ref=e230]:
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - heading "Mike Davis" [level=3] [ref=e233]
+                  - generic [ref=e235]:
+                    - img [ref=e236]
+                    - generic [ref=e239]: pending
+                  - generic [ref=e240]: RES-003
+                - generic [ref=e241]:
+                  - generic [ref=e242]:
+                    - img [ref=e243]
+                    - generic [ref=e248]: Thursday, August 21, 2025
+                  - generic [ref=e249]:
+                    - img [ref=e250]
+                    - generic [ref=e253]: 8:00 PM
+                  - generic [ref=e254]:
+                    - img [ref=e255]
+                    - generic [ref=e260]: 6 guests
+                  - generic [ref=e261]:
+                    - img [ref=e262]
+                    - generic [ref=e264]: (555) 345-6789
+                - generic [ref=e265]:
+                  - img [ref=e266]
+                  - generic [ref=e269]: mike.davis@email.com
+                - generic [ref=e270]:
+                  - img [ref=e271]
+                  - generic [ref=e273]: High chair needed for baby
+              - generic [ref=e274]:
+                - button "Confirm" [ref=e275]:
+                  - img
+                  - text: Confirm
+                - button "Cancel" [ref=e276]:
+                  - img
+                  - text: Cancel
+  - button "Open Next.js Dev Tools" [ref=e282] [cursor=pointer]:
+    - img [ref=e283] [cursor=pointer]
+  - alert [ref=e287]
+```

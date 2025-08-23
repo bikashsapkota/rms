@@ -12,6 +12,7 @@ class MenuCategoryBase(SQLModel):
     name: str = Field(max_length=255, nullable=False)
     description: Optional[str] = Field(default=None)
     sort_order: int = Field(default=0, description="Display order")
+    cover_image_url: Optional[str] = Field(default=None, max_length=500, description="Category cover image URL")
     is_active: bool = Field(default=True)
 
 
@@ -34,6 +35,7 @@ class MenuCategoryUpdate(SQLModel):
     name: Optional[str] = None
     description: Optional[str] = None
     sort_order: Optional[int] = None
+    cover_image_url: Optional[str] = None
     is_active: Optional[bool] = None
 
 

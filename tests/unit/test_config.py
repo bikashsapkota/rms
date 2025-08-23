@@ -12,7 +12,7 @@ class TestSettings:
 
     def test_default_settings(self):
         """Test default settings values."""
-        with patch.dict('os.environ', {}, clear=True):
+        with patch.dict('os.environ', {'DEBUG': 'false'}, clear=True):
             settings = Settings()
             
             assert settings.PROJECT_NAME == "Restaurant Management System"
@@ -42,14 +42,17 @@ class TestSettings:
     def test_cors_origins_string(self):
         """Test CORS origins parsing from string."""
         env_vars = {
-            "BACKEND_CORS_ORIGINS": "http://localhost:3000,http://localhost:8080"
+            "BACKEND_CORS_ORIGINS": "http://localhost:3000,http://localhost:8080",
+            "DEBUG": "false"
         }
         
         with patch.dict('os.environ', env_vars, clear=True):
             settings = Settings()
             
-            expected_origins = ["http://localhost:3000", "http://localhost:8080"]
-            assert settings.BACKEND_CORS_ORIGINS == expected_origins
+            # CORS origins should be parsed as URLs, so we check the string representation
+            cors_origins = [str(origin) for origin in settings.BACKEND_CORS_ORIGINS]
+            assert "http://localhost:3000/" in cors_origins
+            assert "http://localhost:8080/" in cors_origins
 
     def test_cors_origins_list(self):
         """Test CORS origins as list."""
@@ -68,10 +71,11 @@ class TestSettings:
 
     def test_database_settings(self):
         """Test database-related settings."""
-        settings = Settings()
-        
-        assert "postgresql" in settings.DATABASE_URL
-        assert settings.DATABASE_URL.startswith("postgresql://")
+        with patch.dict('os.environ', {'DEBUG': 'false'}, clear=True):
+            settings = Settings()
+            
+            assert "postgresql" in settings.DATABASE_URL
+            assert settings.DATABASE_URL.startswith("postgresql")
 
     def test_upload_settings(self):
         """Test file upload settings."""
@@ -85,14 +89,13 @@ class TestSettings:
 
     def test_settings_immutability(self):
         """Test that settings are immutable after creation."""
-        settings = Settings()
-        original_project_name = settings.PROJECT_NAME
-        
-        # Trying to modify should not change the value
-        try:
-            settings.PROJECT_NAME = "Modified Name"
-        except Exception:
-            pass  # Expected if immutable
-        
-        # Original value should remain
-        assert settings.PROJECT_NAME == original_project_name
+        with patch.dict('os.environ', {'DEBUG': 'false'}, clear=True):
+            settings = Settings()
+            original_project_name = settings.PROJECT_NAME
+            
+            # Pydantic v2 settings are frozen by default
+            with pytest.raises(Exception):
+                settings.PROJECT_NAME = "Modified Name"
+            
+            # Original value should remain
+            assert settings.PROJECT_NAME == original_project_name

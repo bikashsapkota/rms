@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - link "Back to Website" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e7] [cursor=pointer]
+        - text: Back to Website
+      - generic [ref=e11]: D
+      - heading "Staff Portal" [level=1] [ref=e12]
+      - paragraph [ref=e13]: Sign in to access the Demo Restaurant management dashboard
+    - generic [ref=e14]:
+      - generic [ref=e16]: Sign In
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]: Email Address
+            - textbox "Email Address" [ref=e21]
+          - generic [ref=e22]:
+            - generic [ref=e23]: Password
+            - generic [ref=e24]:
+              - textbox "Password" [ref=e25]
+              - button [ref=e26]:
+                - img [ref=e27]
+          - button "Sign In" [disabled]:
+            - img
+            - text: Sign In
+        - generic [ref=e30]:
+          - heading "Demo Credentials" [level=3] [ref=e31]
+          - generic [ref=e32]:
+            - paragraph [ref=e33]:
+              - generic [ref=e34]: "Manager:"
+              - text: manager@demorestaurant.com / password123
+            - paragraph [ref=e35]:
+              - generic [ref=e36]: "Staff:"
+              - text: staff@demorestaurant.com / password123
+        - generic [ref=e37]:
+          - link "Forgot your password?" [ref=e38] [cursor=pointer]:
+            - /url: /auth/forgot-password
+          - paragraph [ref=e39]: Need access? Contact your restaurant manager.
+    - paragraph [ref=e41]: This is a secure area. All activities are logged for security purposes. By signing in, you agree to our terms of service and privacy policy.
+  - button "Open Next.js Dev Tools" [ref=e47] [cursor=pointer]:
+    - img [ref=e48] [cursor=pointer]
+  - alert [ref=e51]
+```

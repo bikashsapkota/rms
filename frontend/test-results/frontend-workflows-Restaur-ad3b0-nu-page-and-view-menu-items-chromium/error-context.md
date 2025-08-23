@@ -1,0 +1,121 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "D Demo Restaurant" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e8] [cursor=pointer]: D
+          - generic [ref=e9] [cursor=pointer]: Demo Restaurant
+        - navigation [ref=e10]:
+          - link "Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+          - link "Menu" [ref=e12] [cursor=pointer]:
+            - /url: /menu
+          - link "Reservations" [ref=e13] [cursor=pointer]:
+            - /url: /book
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e15]:
+          - link "Book Table" [ref=e16] [cursor=pointer]:
+            - /url: /book
+            - button "Book Table" [ref=e17]:
+              - img
+              - text: Book Table
+          - link "Staff Login" [ref=e18] [cursor=pointer]:
+            - /url: /auth/login
+            - button "Staff Login" [ref=e19]
+    - main [ref=e20]:
+      - generic [ref=e22]:
+        - generic [ref=e25]:
+          - heading "Our Menu" [level=1] [ref=e26]
+          - paragraph [ref=e27]: Discover our carefully crafted dishes made with the finest ingredients. Each dish tells a story of culinary excellence and tradition.
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - img [ref=e31]
+            - textbox "Search menu items..." [ref=e34]
+          - generic [ref=e35]:
+            - button "All Items" [ref=e36]
+            - button "Appetizers" [ref=e37]
+          - paragraph [ref=e39]: Showing 1 item
+        - generic [ref=e42]:
+          - img [ref=e44]
+          - heading "No items found" [level=3] [ref=e47]
+          - paragraph [ref=e48]: Try adjusting your search or browse all menu items.
+          - button "View All Menu Items" [ref=e49]
+        - generic [ref=e51]:
+          - heading "Ready to Experience Our Cuisine?" [level=2] [ref=e52]
+          - paragraph [ref=e53]: Book your table now and enjoy an unforgettable dining experience at Demo Restaurant.
+          - generic [ref=e54]:
+            - button "Make a Reservation" [ref=e55]
+            - button "Call (555) 123-4567" [ref=e56]
+    - contentinfo [ref=e57]:
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - generic [ref=e63]: D
+              - generic [ref=e64]: Demo Restaurant
+            - paragraph [ref=e65]: Experience exceptional dining with authentic flavors, fresh ingredients, and warm hospitality in the heart of the city.
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - img [ref=e68]
+                - generic [ref=e71]: 123 Main Street, Downtown, City 12345
+              - generic [ref=e72]:
+                - img [ref=e73]
+                - generic [ref=e75]: (555) 123-4567
+              - generic [ref=e76]:
+                - img [ref=e77]
+                - generic [ref=e80]: info@demorestaurant.com
+          - generic [ref=e81]:
+            - heading "Quick Links" [level=3] [ref=e82]
+            - list [ref=e83]:
+              - listitem [ref=e84]:
+                - link "Home" [ref=e85] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e86]:
+                - link "Menu" [ref=e87] [cursor=pointer]:
+                  - /url: /menu
+              - listitem [ref=e88]:
+                - link "Reservations" [ref=e89] [cursor=pointer]:
+                  - /url: /book
+              - listitem [ref=e90]:
+                - link "Contact" [ref=e91] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e92]:
+                - link "About Us" [ref=e93] [cursor=pointer]:
+                  - /url: /about
+          - generic [ref=e94]:
+            - heading "Hours" [level=3] [ref=e95]
+            - generic [ref=e97]:
+              - img [ref=e98]
+              - generic [ref=e101]:
+                - paragraph [ref=e102]: "Mon - Thu: 11:00 AM - 10:00 PM"
+                - paragraph [ref=e103]: "Fri - Sat: 11:00 AM - 11:00 PM"
+                - paragraph [ref=e104]: "Sunday: 12:00 PM - 9:00 PM"
+            - generic [ref=e105]:
+              - heading "Follow Us" [level=4] [ref=e106]
+              - generic [ref=e107]:
+                - link "Facebook" [ref=e108] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e109] [cursor=pointer]
+                - link "Instagram" [ref=e111] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e112] [cursor=pointer]
+                - link "Twitter" [ref=e114] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e115] [cursor=pointer]
+        - generic [ref=e117]:
+          - paragraph [ref=e118]: © 2025 Demo Restaurant. All rights reserved.
+          - paragraph [ref=e119]:
+            - link "Privacy Policy" [ref=e120] [cursor=pointer]:
+              - /url: /privacy
+            - text: "|"
+            - link "Terms of Service" [ref=e121] [cursor=pointer]:
+              - /url: /terms
+  - button "Open Next.js Dev Tools" [ref=e127] [cursor=pointer]:
+    - img [ref=e128] [cursor=pointer]
+  - alert [ref=e131]
+```

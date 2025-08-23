@@ -20,6 +20,7 @@ from app.shared.models.restaurant import Restaurant
 from app.shared.models.user import User
 from app.modules.menu.models.category import MenuCategory
 from app.modules.menu.models.item import MenuItem
+from app.modules.platform.models.application import RestaurantApplication
 from app.shared.auth.security import get_password_hash
 from data.fixtures.organizations import SAMPLE_ORGANIZATIONS
 from data.fixtures.restaurants import SAMPLE_RESTAURANTS
@@ -61,12 +62,14 @@ class DatabaseSeeder:
         """Clear existing data (for development)."""
         print("🧹 Clearing existing data...")
         
+        from sqlmodel import text
+        
         # Delete in reverse order due to foreign key constraints
-        await session.exec("DELETE FROM menu_items")
-        await session.exec("DELETE FROM menu_categories")
-        await session.exec("DELETE FROM users")
-        await session.exec("DELETE FROM restaurants")
-        await session.exec("DELETE FROM organizations")
+        await session.execute(text("DELETE FROM menu_items"))
+        await session.execute(text("DELETE FROM menu_categories"))
+        await session.execute(text("DELETE FROM users"))
+        await session.execute(text("DELETE FROM restaurants"))
+        await session.execute(text("DELETE FROM organizations"))
         
         print("   Cleared existing data")
     

@@ -1,8 +1,10 @@
 from typing import List, Optional
-from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile, Query, Path as PathParam
 from sqlmodel.ext.asyncio.session import AsyncSession
 from app.shared.database.session import get_session
 from app.shared.auth.deps import get_tenant_context, TenantContext, require_manager
+from uuid import UUID
+import uuid
 from app.modules.menu.models.item import (
     MenuItemCreate,
     MenuItemUpdate,
@@ -18,6 +20,18 @@ from pathlib import Path
 
 router = APIRouter(prefix="/menu/items", tags=["Menu Items"])
 public_router = APIRouter(prefix="/menu", tags=["Public Menu"])
+
+
+def validate_uuid(uuid_string: str, field_name: str = "ID") -> str:
+    """Validate UUID format and return the string."""
+    try:
+        uuid.UUID(uuid_string)
+        return uuid_string
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid {field_name} format"
+        )
 
 
 @router.get("/", response_model=List[MenuItemReadWithCategory])
@@ -99,11 +113,14 @@ async def create_item(
 
 @router.get("/{item_id}", response_model=MenuItemReadWithCategory)
 async def get_item(
-    item_id: str,
+    item_id: str = PathParam(..., description="Menu item ID"),
     tenant_context: TenantContext = Depends(get_tenant_context),
     session: AsyncSession = Depends(get_session),
 ):
     """Get a menu item by ID."""
+    # Validate UUID format
+    validate_uuid(item_id, "item ID")
+    
     if not tenant_context.restaurant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -128,13 +145,16 @@ async def get_item(
 
 @router.put("/{item_id}", response_model=MenuItemRead)
 async def update_item(
-    item_id: str,
     item_data: MenuItemUpdate,
+    item_id: str = PathParam(..., description="Menu item ID"),
     tenant_context: TenantContext = Depends(get_tenant_context),
     session: AsyncSession = Depends(get_session),
     current_user=Depends(require_manager),
 ):
     """Update a menu item."""
+    # Validate UUID format
+    validate_uuid(item_id, "item ID")
+    
     if not tenant_context.restaurant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -166,12 +186,15 @@ async def update_item(
 
 @router.delete("/{item_id}")
 async def delete_item(
-    item_id: str,
+    item_id: str = PathParam(..., description="Menu item ID"),
     tenant_context: TenantContext = Depends(get_tenant_context),
     session: AsyncSession = Depends(get_session),
     current_user=Depends(require_manager),
 ):
     """Delete a menu item."""
+    # Validate UUID format
+    validate_uuid(item_id, "item ID")
+    
     if not tenant_context.restaurant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -301,10 +324,74 @@ async def upload_item_image(
     return {"message": "Image uploaded successfully", "image_url": image_url}
 
 
+@router.put("/{item_id}/set-as-category-cover")
+async def set_item_as_category_cover(
+    item_id: str,
+    tenant_context: TenantContext = Depends(get_tenant_context),
+    session: AsyncSession = Depends(get_session),
+    current_user=Depends(require_manager),
+):
+    """Set an item's image as the category cover image."""
+    if not tenant_context.restaurant_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Restaurant context required",
+        )
+    
+    # Get the item first
+    item = await MenuItemService.get_item_by_id(
+        session=session,
+        item_id=item_id,
+        organization_id=tenant_context.organization_id,
+        restaurant_id=tenant_context.restaurant_id,
+    )
+    
+    if not item:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Menu item not found",
+        )
+    
+    if not item.image_url:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Menu item must have an image to set as category cover",
+        )
+    
+    if not item.category_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Menu item must belong to a category",
+        )
+    
+    # Update the category with the item's image
+    from app.modules.menu.services.category import MenuCategoryService
+    
+    success = await MenuCategoryService.set_cover_image(
+        session=session,
+        category_id=str(item.category_id),
+        image_url=item.image_url,
+        organization_id=tenant_context.organization_id,
+        restaurant_id=tenant_context.restaurant_id,
+    )
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Category not found",
+        )
+    
+    return {
+        "message": "Item image set as category cover successfully",
+        "category_id": str(item.category_id),
+        "cover_image_url": item.image_url
+    }
+
+
 # Public menu endpoint (no authentication required)
 @public_router.get("/public", response_model=List[MenuItemPublic])
 async def get_public_menu(
-    restaurant_id: str,
+    restaurant_id: str = Query(..., description="Restaurant ID to get menu for"),
     session: AsyncSession = Depends(get_session),
 ):
     """Get public menu for customers."""

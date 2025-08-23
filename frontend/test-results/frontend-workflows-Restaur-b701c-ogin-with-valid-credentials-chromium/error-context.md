@@ -1,0 +1,198 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8] [cursor=pointer]
+  - alert [ref=e11]: Dashboard - Demo Restaurant
+  - generic [ref=e12]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e17]: D
+        - generic [ref=e18]: Demo Restaurant
+      - navigation [ref=e19]:
+        - link "Overview" [ref=e20] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e21] [cursor=pointer]
+          - generic [ref=e24] [cursor=pointer]: Overview
+        - link "Menu Management" [ref=e25] [cursor=pointer]:
+          - /url: /dashboard/menu
+          - img [ref=e26] [cursor=pointer]
+          - generic [ref=e28] [cursor=pointer]: Menu Management
+        - link "Reservations" [ref=e29] [cursor=pointer]:
+          - /url: /dashboard/reservations
+          - img [ref=e30] [cursor=pointer]
+          - generic [ref=e32] [cursor=pointer]: Reservations
+        - link "Staff" [ref=e33] [cursor=pointer]:
+          - /url: /dashboard/staff
+          - img [ref=e34] [cursor=pointer]
+          - generic [ref=e39] [cursor=pointer]: Staff
+        - link "Analytics" [ref=e40] [cursor=pointer]:
+          - /url: /dashboard/analytics
+          - img [ref=e41] [cursor=pointer]
+          - generic [ref=e43] [cursor=pointer]: Analytics
+        - link "Settings" [ref=e44] [cursor=pointer]:
+          - /url: /dashboard/settings
+          - img [ref=e45] [cursor=pointer]
+          - generic [ref=e48] [cursor=pointer]: Settings
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e52]: D
+          - generic [ref=e53]:
+            - paragraph [ref=e54]: Demo Staff
+            - paragraph [ref=e55]: staff@demorestaurant.com
+        - button "Sign Out" [ref=e56]:
+          - img
+          - text: Sign Out
+    - generic [ref=e57]:
+      - generic [ref=e59]:
+        - heading "Overview" [level=1] [ref=e62]
+        - generic [ref=e63]:
+          - button [ref=e64]:
+            - img
+          - link "View Site" [ref=e66] [cursor=pointer]:
+            - /url: /
+            - button "View Site" [ref=e67]
+          - generic [ref=e68]:
+            - generic [ref=e70]: D
+            - generic [ref=e71]:
+              - paragraph [ref=e72]: Demo Staff
+              - paragraph [ref=e73]: staff@demorestaurant.com
+      - main [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - heading "Welcome to Demo Restaurant" [level=1] [ref=e78]
+              - paragraph [ref=e79]: Here's what's happening at your restaurant today.
+            - link "View Public Site" [ref=e80] [cursor=pointer]:
+              - /url: /
+              - button "View Public Site" [ref=e81]:
+                - img
+                - generic [ref=e82]: View Public Site
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: Today's Reservations
+                - img [ref=e87]
+              - generic [ref=e89]:
+                - generic [ref=e90]: "23"
+                - paragraph [ref=e91]: +3 from yesterday
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]: Today's Revenue
+                - img [ref=e95]
+              - generic [ref=e97]:
+                - generic [ref=e98]: $3,420
+                - paragraph [ref=e99]: +12.5% from last week
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - generic [ref=e102]: Guests Served
+                - img [ref=e103]
+              - generic [ref=e108]:
+                - generic [ref=e109]: "67"
+                - paragraph [ref=e110]: +8 from yesterday
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - generic [ref=e113]: Weekly Growth
+                - img [ref=e114]
+              - generic [ref=e117]:
+                - generic [ref=e118]: +12.5%
+                - paragraph [ref=e119]: Revenue increase
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e123]:
+                - generic [ref=e124]: Today's Reservations
+                - link "View All" [ref=e125] [cursor=pointer]:
+                  - /url: /dashboard/reservations
+                  - button "View All" [ref=e126]
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - generic [ref=e130]:
+                    - generic [ref=e132]: JS
+                    - generic [ref=e133]:
+                      - paragraph [ref=e134]: John Smith
+                      - paragraph [ref=e135]: 7:00 PM • 4 guests
+                  - generic [ref=e136]:
+                    - img [ref=e137]
+                    - generic [ref=e140]: confirmed
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - generic [ref=e144]: SJ
+                    - generic [ref=e145]:
+                      - paragraph [ref=e146]: Sarah Johnson
+                      - paragraph [ref=e147]: 7:30 PM • 2 guests
+                  - generic [ref=e148]:
+                    - img [ref=e149]
+                    - generic [ref=e152]: confirmed
+                - generic [ref=e153]:
+                  - generic [ref=e154]:
+                    - generic [ref=e156]: MD
+                    - generic [ref=e157]:
+                      - paragraph [ref=e158]: Mike Davis
+                      - paragraph [ref=e159]: 8:00 PM • 6 guests
+                  - generic [ref=e160]:
+                    - img [ref=e161]
+                    - generic [ref=e164]: pending
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - generic [ref=e168]: EB
+                    - generic [ref=e169]:
+                      - paragraph [ref=e170]: Emily Brown
+                      - paragraph [ref=e171]: 8:30 PM • 3 guests
+                  - generic [ref=e172]:
+                    - img [ref=e173]
+                    - generic [ref=e176]: confirmed
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - generic [ref=e180]: DW
+                    - generic [ref=e181]:
+                      - paragraph [ref=e182]: David Wilson
+                      - paragraph [ref=e183]: 9:00 PM • 2 guests
+                  - generic [ref=e184]:
+                    - img [ref=e185]
+                    - generic [ref=e188]: confirmed
+            - generic [ref=e189]:
+              - generic [ref=e191]:
+                - generic [ref=e192]: Menu Status
+                - link "Manage Menu" [ref=e193] [cursor=pointer]:
+                  - /url: /dashboard/menu
+                  - button "Manage Menu" [ref=e194]
+              - generic [ref=e197]:
+                - generic [ref=e198]:
+                  - paragraph [ref=e199]: Truffle Arancini
+                  - paragraph [ref=e200]: 13 orders today
+                - generic [ref=e201]:
+                  - img [ref=e202]
+                  - generic [ref=e205]: Available
+          - generic [ref=e206]:
+            - generic [ref=e208]: Quick Actions
+            - generic [ref=e210]:
+              - link "Manage Reservations View and update bookings" [ref=e211] [cursor=pointer]:
+                - /url: /dashboard/reservations
+                - button "Manage Reservations View and update bookings" [ref=e212]:
+                  - generic [ref=e213]:
+                    - img
+                    - generic [ref=e214]: Manage Reservations
+                    - generic [ref=e215]: View and update bookings
+              - link "Update Menu Edit dishes and prices" [ref=e216] [cursor=pointer]:
+                - /url: /dashboard/menu
+                - button "Update Menu Edit dishes and prices" [ref=e217]:
+                  - generic [ref=e218]:
+                    - img
+                    - generic [ref=e219]: Update Menu
+                    - generic [ref=e220]: Edit dishes and prices
+              - link "Staff Management Manage team members" [ref=e221] [cursor=pointer]:
+                - /url: /dashboard/staff
+                - button "Staff Management Manage team members" [ref=e222]:
+                  - generic [ref=e223]:
+                    - img
+                    - generic [ref=e224]: Staff Management
+                    - generic [ref=e225]: Manage team members
+              - link "Restaurant Settings Configure restaurant" [ref=e226] [cursor=pointer]:
+                - /url: /dashboard/settings
+                - button "Restaurant Settings Configure restaurant" [ref=e227]:
+                  - generic [ref=e228]:
+                    - img
+                    - generic [ref=e229]: Restaurant Settings
+                    - generic [ref=e230]: Configure restaurant
+```
