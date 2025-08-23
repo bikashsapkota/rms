@@ -1,4 +1,5 @@
 from typing import Optional, Dict, Any
+from uuid import UUID
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlmodel.ext.asyncio.session import AsyncSession
@@ -9,14 +10,21 @@ from app.shared.models.organization import Organization
 from app.shared.models.restaurant import Restaurant
 from app.shared.auth.security import decode_user_token
 
-# Bearer token security scheme
-bearer_scheme = HTTPBearer()
+# Bearer token security scheme  
+bearer_scheme = HTTPBearer(auto_error=False)
 
 
 async def get_current_user_token(
-    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme)
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme)
 ) -> Dict[str, Any]:
     """Extract and validate JWT token."""
+    if credentials is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication credentials required",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
     token = credentials.credentials
     payload = decode_user_token(token)
     
@@ -42,7 +50,16 @@ async def get_current_user(
             detail="Invalid token payload",
         )
     
-    statement = select(User).where(User.id == user_id, User.is_active == True)
+    # Convert string UUID to UUID object
+    try:
+        user_uuid = UUID(user_id) if isinstance(user_id, str) else user_id
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid user ID format",
+        )
+    
+    statement = select(User).where(User.id == user_uuid, User.is_active == True)
     result = await session.exec(statement)
     user = result.first()
     
@@ -95,8 +112,9 @@ async def get_tenant_context(
 ) -> TenantContext:
     """Get tenant context for the current user."""
     # Get organization
+    org_uuid = UUID(current_user.organization_id) if isinstance(current_user.organization_id, str) else current_user.organization_id
     org_statement = select(Organization).where(
-        Organization.id == current_user.organization_id,
+        Organization.id == org_uuid,
         Organization.is_active == True,
     )
     org_result = await session.exec(org_statement)
@@ -111,8 +129,9 @@ async def get_tenant_context(
     # Get restaurant if user has one
     restaurant = None
     if current_user.restaurant_id:
+        rest_uuid = UUID(current_user.restaurant_id) if isinstance(current_user.restaurant_id, str) else current_user.restaurant_id
         rest_statement = select(Restaurant).where(
-            Restaurant.id == current_user.restaurant_id,
+            Restaurant.id == rest_uuid,
             Restaurant.is_active == True,
         )
         rest_result = await session.exec(rest_statement)
@@ -134,10 +153,18 @@ async def get_tenant_context(
 def require_role(*allowed_roles: str):
     """Dependency factory for role-based access control."""
     def role_checker(current_user: User = Depends(get_current_active_user)) -> User:
-        if current_user.role not in allowed_roles:
+        # Handle both individual strings and lists
+        roles = []
+        for role in allowed_roles:
+            if isinstance(role, list):
+                roles.extend(role)
+            else:
+                roles.append(role)
+        
+        if current_user.role not in roles:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
-                detail=f"Insufficient permissions. Required roles: {', '.join(allowed_roles)}",
+                detail=f"Insufficient permissions. Required roles: {', '.join(roles)}",
             )
         return current_user
     

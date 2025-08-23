@@ -47,3 +47,20 @@ class TokenPayload(BaseModel):
     organization_id: str
     restaurant_id: Optional[str] = None
     role: str = "staff"
+
+
+class CreateAdminRequest(BaseModel):
+    """Admin user creation request schema."""
+    email: EmailStr = Field(..., description="Admin email address")
+    password: str = Field(..., min_length=8, description="Admin password")
+    full_name: str = Field(..., min_length=1, description="Admin full name")
+    organization_name: str = Field(..., min_length=1, description="Organization name")
+    restaurant_name: Optional[str] = Field(None, description="Restaurant name (optional)")
+
+
+class CreateAdminResponse(BaseModel):
+    """Admin user creation response schema."""
+    message: str = Field(..., description="Success message")
+    user_id: str = Field(..., description="Created user ID")
+    organization_id: str = Field(..., description="Created organization ID")
+    restaurant_id: Optional[str] = Field(None, description="Created restaurant ID")

@@ -1,0 +1,3 @@
+"""
+Table management routes.
+"""

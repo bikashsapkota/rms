@@ -94,6 +94,8 @@ class AuthService:
             "role": user.role,
             "organization_id": str(user.organization_id),
             "restaurant_id": str(user.restaurant_id) if user.restaurant_id else None,
+            "created_at": user.created_at.isoformat(),
+            "updated_at": user.updated_at.isoformat(),
             "organization_name": organization.name if organization else "Unknown",
             "restaurant_name": restaurant.name if restaurant else None,
         }
@@ -133,3 +135,72 @@ class AuthService:
         await session.refresh(user)
         
         return user
+    
+    @staticmethod
+    async def create_admin_with_organization(
+        session: AsyncSession,
+        email: str,
+        password: str,
+        full_name: str,
+        organization_name: str,
+        restaurant_name: Optional[str] = None,
+    ) -> dict:
+        """Create admin user with organization and optional restaurant."""
+        # Check if user already exists
+        statement = select(User).where(User.email == email)
+        result = await session.exec(statement)
+        existing_user = result.first()
+        
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="User with this email already exists",
+            )
+        
+        # Create organization
+        organization = Organization(
+            name=organization_name,
+            description=f"Organization for {organization_name}",
+        )
+        session.add(organization)
+        await session.flush()  # Get the ID
+        
+        # Create restaurant if provided
+        restaurant = None
+        if restaurant_name:
+            restaurant = Restaurant(
+                name=restaurant_name,
+                description=f"Restaurant {restaurant_name}",
+                organization_id=organization.id,
+                cuisine_type="General",
+                address="TBD",
+                phone="TBD",
+                email=email,
+            )
+            session.add(restaurant)
+            await session.flush()  # Get the ID
+        
+        # Create admin user
+        admin_user = User(
+            email=email,
+            full_name=full_name,
+            role="admin",
+            password_hash=get_password_hash(password),
+            organization_id=organization.id,
+            restaurant_id=restaurant.id if restaurant else None,
+            is_active=True,
+        )
+        
+        session.add(admin_user)
+        await session.commit()
+        await session.refresh(admin_user)
+        await session.refresh(organization)
+        if restaurant:
+            await session.refresh(restaurant)
+        
+        return {
+            "user_id": str(admin_user.id),
+            "organization_id": str(organization.id),
+            "restaurant_id": str(restaurant.id) if restaurant else None,
+            "message": "Admin user created successfully",
+        }
