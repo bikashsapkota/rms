@@ -54,7 +54,7 @@ async def list_categories(
     ]
 
 
-@router.post("/", response_model=MenuCategoryRead)
+@router.post("/", response_model=MenuCategoryRead, status_code=status.HTTP_201_CREATED)
 async def create_category(
     category_data: MenuCategoryCreate,
     tenant_context: TenantContext = Depends(get_tenant_context),

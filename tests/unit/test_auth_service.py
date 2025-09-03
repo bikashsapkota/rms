@@ -6,7 +6,7 @@ import pytest
 from unittest.mock import AsyncMock, patch
 from datetime import datetime, timedelta
 from app.modules.auth.service import AuthService
-from app.shared.models.user import User
+from app.shared.models.user import User, UserCreate
 from uuid import uuid4
 
 
@@ -17,7 +17,6 @@ class TestAuthService:
     def setup(self):
         """Set up test fixtures."""
         self.mock_session = AsyncMock()
-        self.auth_service = AuthService(self.mock_session)
         self.test_user_id = uuid4()
         self.test_org_id = uuid4()
         self.test_restaurant_id = uuid4()
@@ -25,12 +24,12 @@ class TestAuthService:
     @pytest.mark.asyncio
     async def test_create_user_success(self):
         """Test successful user creation."""
-        user_data = {
-            "email": "test@example.com",
-            "full_name": "Test User",
-            "password": "password123",
-            "role": "staff"
-        }
+        user_data = UserCreate(
+            email="test@example.com",
+            full_name="Test User",
+            password="password123",
+            role="staff"
+        )
         
         with patch('app.modules.auth.service.get_password_hash') as mock_hash:
             mock_hash.return_value = "hashed_password"
@@ -40,8 +39,13 @@ class TestAuthService:
             self.mock_session.commit = AsyncMock()
             self.mock_session.refresh = AsyncMock()
             
-            created_user = await self.auth_service.create_user(
-                user_data, self.test_org_id, self.test_restaurant_id
+            # Mock the exec query for existing user check
+            mock_result = AsyncMock()
+            mock_result.first.return_value = None  # No existing user
+            self.mock_session.exec = AsyncMock(return_value=mock_result)
+            
+            created_user = await AuthService.create_user(
+                self.mock_session, user_data, str(self.test_org_id), str(self.test_restaurant_id)
             )
             
             # Verify user creation process

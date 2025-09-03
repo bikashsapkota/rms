@@ -17,6 +17,8 @@ DEFAULT_TEST_ADMIN_PASSWORD = "secure_test_password"
 
 # Alternative credentials for testing
 FALLBACK_CREDENTIALS = [
+    {"email": "manager@demorestaurant.com", "password": "password123"},
+    {"email": "staff@demorestaurant.com", "password": "password123"},
     {"email": "admin@example.com", "password": "iampassword"},
     {"email": "test@restaurant.com", "password": "testpassword"},
     {"email": "manager@pizzapalace.com", "password": "managerpass"},
@@ -47,7 +49,7 @@ class RMSAuthManager:
             }
             
             # Try form data first (OAuth2 standard)
-            response = await client.post("/auth/login", data=auth_data)
+            response = await client.post("/api/v1/auth/login", data=auth_data)
             
             if response.status_code != 200:
                 # Try JSON format as fallback
@@ -55,7 +57,7 @@ class RMSAuthManager:
                     "email": email,
                     "password": password
                 }
-                response = await client.post("/auth/login", json=auth_data)
+                response = await client.post("/api/v1/auth/login", json=auth_data)
                 
             if response.status_code == 200:
                 auth_response = response.json()
@@ -113,7 +115,7 @@ class RMSAuthManager:
             return None
             
         headers = self.get_auth_headers()
-        response = await client.get("/auth/me", headers=headers)
+        response = await client.get("/api/v1/auth/me", headers=headers)
         
         if response.status_code == 200:
             user_info = response.json()
@@ -164,7 +166,7 @@ class RMSAuthManager:
             
         try:
             refresh_data = {"refresh_token": self.refresh_token}
-            response = await client.post("/auth/refresh", json=refresh_data)
+            response = await client.post("/api/v1/auth/refresh", json=refresh_data)
             
             if response.status_code == 200:
                 auth_response = response.json()
@@ -187,7 +189,7 @@ class RMSAuthManager:
         try:
             if self.access_token:
                 headers = self.get_auth_headers()
-                await client.post("/auth/logout", headers=headers)
+                await client.post("/api/v1/auth/logout", headers=headers)
                 
         except Exception:
             pass  # Logout errors are not critical

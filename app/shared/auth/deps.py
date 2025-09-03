@@ -1,7 +1,7 @@
 from typing import Optional, Dict, Any
 from uuid import UUID
 from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
 from app.shared.database.session import get_session
@@ -13,19 +13,34 @@ from app.shared.auth.security import decode_user_token
 # Bearer token security scheme  
 bearer_scheme = HTTPBearer(auto_error=False)
 
+# OAuth2 password bearer for docs authentication
+oauth2_scheme = OAuth2PasswordBearer(
+    tokenUrl="/api/v1/auth/token",
+    auto_error=False
+)
+
 
 async def get_current_user_token(
-    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme)
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme),
+    oauth2_token: Optional[str] = Depends(oauth2_scheme)
 ) -> Dict[str, Any]:
-    """Extract and validate JWT token."""
-    if credentials is None:
+    """Extract and validate JWT token from either Bearer header or OAuth2 token."""
+    token = None
+    
+    # Try to get token from Bearer scheme first
+    if credentials is not None:
+        token = credentials.credentials
+    # Fall back to OAuth2 scheme
+    elif oauth2_token is not None:
+        token = oauth2_token
+    
+    if token is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Authentication credentials required",
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    token = credentials.credentials
     payload = decode_user_token(token)
     
     if payload is None:
@@ -98,12 +113,12 @@ class TenantContext:
         self.restaurant = restaurant
     
     @property
-    def organization_id(self) -> str:
-        return str(self.organization.id)
+    def organization_id(self) -> UUID:
+        return self.organization.id
     
     @property
-    def restaurant_id(self) -> Optional[str]:
-        return str(self.restaurant.id) if self.restaurant else None
+    def restaurant_id(self) -> Optional[UUID]:
+        return self.restaurant.id if self.restaurant else None
 
 
 async def get_tenant_context(

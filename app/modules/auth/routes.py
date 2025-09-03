@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
 from app.shared.database.session import get_session
@@ -44,6 +45,34 @@ async def login(
         expires_in=expires_in,
         user=user_details,
     )
+
+
+@router.post("/token")
+async def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    session: AsyncSession = Depends(get_session),
+):
+    """OAuth2 compatible token endpoint for Swagger UI authentication."""
+    user = await AuthService.authenticate_user(
+        session, form_data.username, form_data.password
+    )
+    
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    access_token, expires_in = await AuthService.create_access_token_for_user(
+        session, user
+    )
+    
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "expires_in": expires_in
+    }
 
 
 @router.post("/logout", response_model=LogoutResponse)

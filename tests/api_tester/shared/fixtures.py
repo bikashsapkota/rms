@@ -284,16 +284,16 @@ class RMSTestFixtures:
         """Generate realistic menu modifiers"""
         
         modifiers = [
-            {"name": "Extra Cheese", "type": "addon", "price_adjustment": 1.50},
-            {"name": "Extra Bacon", "type": "addon", "price_adjustment": 2.00},
-            {"name": "Avocado", "type": "addon", "price_adjustment": 1.75},
-            {"name": "No Onions", "type": "substitution", "price_adjustment": 0.00},
-            {"name": "No Tomatoes", "type": "substitution", "price_adjustment": 0.00},
-            {"name": "Extra Spicy", "type": "preparation", "price_adjustment": 0.00},
-            {"name": "Well Done", "type": "preparation", "price_adjustment": 0.00},
-            {"name": "Large Size", "type": "size", "price_adjustment": 3.00},
-            {"name": "Small Size", "type": "size", "price_adjustment": -2.00},
-            {"name": "Gluten Free Bun", "type": "substitution", "price_adjustment": 1.00}
+            {"name": "Extra Cheese", "modifier_type": "addon", "price_adjustment": 1.50},
+            {"name": "Extra Bacon", "modifier_type": "addon", "price_adjustment": 2.00},
+            {"name": "Avocado", "modifier_type": "addon", "price_adjustment": 1.75},
+            {"name": "No Onions", "modifier_type": "substitution", "price_adjustment": 0.00},
+            {"name": "No Tomatoes", "modifier_type": "substitution", "price_adjustment": 0.00},
+            {"name": "Extra Spicy", "modifier_type": "preparation", "price_adjustment": 0.00},
+            {"name": "Well Done", "modifier_type": "preparation", "price_adjustment": 0.00},
+            {"name": "Large Size", "modifier_type": "size", "price_adjustment": 3.00},
+            {"name": "Small Size", "modifier_type": "size", "price_adjustment": -2.00},
+            {"name": "Gluten Free Bun", "modifier_type": "substitution", "price_adjustment": 1.00}
         ]
         
         # Add is_active to each modifier

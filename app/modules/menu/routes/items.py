@@ -75,7 +75,7 @@ async def list_items(
     return detailed_items
 
 
-@router.post("/", response_model=MenuItemRead)
+@router.post("/", response_model=MenuItemRead, status_code=status.HTTP_201_CREATED)
 async def create_item(
     item_data: MenuItemCreate,
     tenant_context: TenantContext = Depends(get_tenant_context),

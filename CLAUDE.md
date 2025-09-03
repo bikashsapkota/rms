@@ -79,7 +79,120 @@ NEXTAUTH_SECRET=your-secret-key
 
 ## Testing
 
-### Backend API Testing
+### Testing Plan
+
+#### Test Categories
+1. **Unit Tests** - Individual component/function testing
+2. **Integration Tests** - Module interaction testing
+3. **End-to-End Tests** - Full user workflow testing
+4. **API Tests** - Endpoint validation and contract testing
+5. **Security Tests** - Authentication, authorization, and data validation
+
+#### Backend Testing Strategy
+
+##### Unit Tests
+```bash
+# Run all unit tests
+uv run pytest tests/unit/
+
+# Run specific test file
+uv run pytest tests/unit/test_auth_service.py
+
+# Run with coverage
+uv run pytest --cov=app tests/unit/
+```
+
+##### Integration Tests
+```bash
+# Run integration tests (requires running services)
+uv run pytest tests/integration/
+
+# Test database interactions
+uv run pytest tests/integration/test_database.py
+```
+
+##### API Tests
+```bash
+# Run comprehensive API test suite
+uv run pytest tests/api/
+
+# Test specific endpoints
+uv run pytest tests/api/test_auth_endpoints.py
+uv run pytest tests/api/test_menu_endpoints.py
+```
+
+#### Frontend Testing Strategy
+
+##### Unit Tests
+```bash
+cd frontend
+
+# Run Jest unit tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Watch mode for development
+npm run test:watch
+```
+
+##### Component Tests
+```bash
+# Run React Testing Library tests
+npm run test:components
+
+# Test specific component
+npm test -- MenuComponent.test.js
+```
+
+##### End-to-End Tests
+```bash
+# Run Playwright/Cypress E2E tests
+npm run test:e2e
+
+# Run specific E2E test
+npm run test:e2e -- auth.spec.js
+```
+
+#### Test Data Management
+
+##### Database Test Setup
+```bash
+# Create test database
+PGPASSWORD=rms_pass psql -h localhost -p 5432 -U rms_user -c "CREATE DATABASE rms_test;"
+
+# Run migrations on test DB
+TEST_DATABASE_URL=postgresql://rms_user:rms_pass@localhost:5432/rms_test uv run alembic upgrade head
+```
+
+##### Test Fixtures
+- **Users:** Test users with different roles (admin, manager, staff)
+- **Organizations:** Multiple test organizations for multi-tenant testing
+- **Restaurants:** Various restaurant configurations
+- **Menu Items:** Sample menu data for testing
+
+#### Testing Environments
+
+##### Local Development
+```bash
+# Set test environment
+export ENVIRONMENT=test
+export DATABASE_URL=postgresql://rms_user:rms_pass@localhost:5432/rms_test
+
+# Run full test suite
+./scripts/run_tests.sh
+```
+
+##### CI/CD Pipeline
+- **GitHub Actions** for automated testing
+- **Docker containers** for consistent test environment
+- **Test reporting** and coverage metrics
+- **Parallel test execution** for faster feedback
+
+#### Manual Testing
+
+##### Backend API Testing
 ```bash
 # Health check
 curl http://localhost:8000/health
@@ -88,15 +201,79 @@ curl http://localhost:8000/health
 curl -X POST "http://localhost:8000/api/v1/auth/login" \
   -H "Content-Type: application/json" \
   -d '{"email": "manager@demorestaurant.com", "password": "password123"}'
+
+# Menu API test
+curl -H "Authorization: Bearer <token>" \
+  http://localhost:8000/api/v1/menu/items
+
+# Order creation test
+curl -X POST "http://localhost:8000/api/v1/orders" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <token>" \
+  -d '{"items": [{"id": "item_id", "quantity": 2}]}'
 ```
 
-### Run Test Suite
+##### Frontend Manual Testing
+- **Authentication Flow:** Login/logout, role-based access
+- **Menu Management:** CRUD operations, image uploads
+- **Order Processing:** Create, update, track orders
+- **User Management:** Role assignment, permissions
+- **Multi-tenant Isolation:** Data separation between organizations
+
+#### Performance Testing
+```bash
+# Load testing with wrk
+wrk -t12 -c400 -d30s http://localhost:8000/api/v1/menu/items
+
+# Database performance
+uv run pytest tests/performance/ --benchmark-only
+```
+
+#### Security Testing
+```bash
+# SQL injection tests
+uv run pytest tests/security/test_sql_injection.py
+
+# Authentication bypass tests
+uv run pytest tests/security/test_auth_bypass.py
+
+# Input validation tests
+uv run pytest tests/security/test_input_validation.py
+```
+
+#### Test Configuration
+
+##### pytest.ini
+```ini
+[tool:pytest]
+testpaths = tests
+python_files = test_*.py
+python_classes = Test*
+python_functions = test_*
+addopts = --strict-markers --disable-warnings
+markers =
+    unit: Unit tests
+    integration: Integration tests
+    api: API tests
+    slow: Slow running tests
+```
+
+##### Test Commands Reference
 ```bash
 # Backend tests
-uv run pytest
+uv run pytest                              # All tests
+uv run pytest -m unit                      # Unit tests only
+uv run pytest -m integration               # Integration tests only
+uv run pytest -m "not slow"                # Skip slow tests
+uv run pytest --lf                         # Last failed tests
+uv run pytest -x                           # Stop on first failure
+uv run pytest -v                           # Verbose output
 
 # Frontend tests  
-cd frontend && npm test
+cd frontend && npm test                     # All tests
+cd frontend && npm run test:watch          # Watch mode
+cd frontend && npm run test:coverage       # With coverage
+cd frontend && npm run test:e2e           # End-to-end tests
 ```
 
 ## Common Issues & Solutions

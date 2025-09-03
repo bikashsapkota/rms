@@ -44,7 +44,7 @@ async def list_modifiers(
     )
 
 
-@router.post("/", response_model=ModifierRead)
+@router.post("/", response_model=ModifierRead, status_code=status.HTTP_201_CREATED)
 async def create_modifier(
     modifier_data: ModifierCreate,
     session: AsyncSession = Depends(get_session),

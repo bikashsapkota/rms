@@ -1,4 +1,5 @@
 from typing import List, Optional
+from uuid import UUID
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select, func
 from fastapi import HTTPException, status
@@ -17,8 +18,8 @@ class MenuCategoryService:
     async def create_category(
         session: AsyncSession,
         category_data: MenuCategoryCreate,
-        organization_id: str,
-        restaurant_id: str,
+        organization_id: UUID,
+        restaurant_id: UUID,
     ) -> MenuCategory:
         """Create a new menu category."""
         category = MenuCategory(
@@ -36,8 +37,8 @@ class MenuCategoryService:
     @staticmethod
     async def get_categories(
         session: AsyncSession,
-        organization_id: str,
-        restaurant_id: str,
+        organization_id: UUID,
+        restaurant_id: UUID,
         skip: int = 0,
         limit: int = 100,
         include_inactive: bool = False,
