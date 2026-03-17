@@ -1,4 +1,6 @@
 from typing import Optional, List, TYPE_CHECKING
+from uuid import UUID
+from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from pydantic import field_validator
 from app.shared.database.base import RestaurantTenantBaseModel
@@ -60,11 +62,11 @@ class MenuCategoryUpdate(SQLModel):
 
 class MenuCategoryRead(MenuCategoryBase):
     """Schema for reading menu categories."""
-    id: str
-    organization_id: str
-    restaurant_id: str
-    created_at: str
-    updated_at: str
+    id: UUID
+    organization_id: UUID
+    restaurant_id: UUID
+    created_at: datetime
+    updated_at: datetime
 
 
 class MenuCategoryReadWithItems(MenuCategoryRead):

@@ -50,28 +50,17 @@ export function DashboardOverview() {
         setTodayMenu(menuResponse);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
-        setError('Failed to load dashboard data. Using demo data.');
+        setError(`Failed to load dashboard data from database. Error: ${error instanceof Error ? error.message : 'Unknown error'}. Please check your backend connection and database.`);
         
-        // Fallback to demo data if API fails
+        // No fallback data - show empty states and errors
         setStats({
-          todayReservations: 23,
-          todayRevenue: 3420,
-          todayGuests: 67,
-          weeklyGrowth: 12.5,
+          todayReservations: 0,
+          todayRevenue: 0,
+          todayGuests: 0,
+          weeklyGrowth: 0,
         });
-        setRecentReservations([
-          { id: 1, name: 'John Smith', time: '7:00 PM', guests: 4, status: 'confirmed' },
-          { id: 2, name: 'Sarah Johnson', time: '7:30 PM', guests: 2, status: 'confirmed' },
-          { id: 3, name: 'Mike Davis', time: '8:00 PM', guests: 6, status: 'pending' },
-          { id: 4, name: 'Emily Brown', time: '8:30 PM', guests: 3, status: 'confirmed' },
-          { id: 5, name: 'David Wilson', time: '9:00 PM', guests: 2, status: 'confirmed' },
-        ]);
-        setTodayMenu([
-          { name: 'Truffle Pasta', orders: 12, status: 'available' },
-          { name: 'Grilled Salmon', orders: 8, status: 'available' },
-          { name: 'Ribeye Steak', orders: 15, status: 'low-stock' },
-          { name: 'Vegetarian Risotto', orders: 6, status: 'available' },
-        ]);
+        setRecentReservations([]);
+        setTodayMenu([]);
       } finally {
         setLoading(false);
       }
@@ -234,40 +223,50 @@ export function DashboardOverview() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentReservations.map((reservation) => (
-                <div
-                  key={reservation.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
-                      <span className="text-orange-600 font-medium text-sm">
-                        {reservation.name.split(' ').map(n => n[0]).join('')}
+              {recentReservations.length > 0 ? (
+                recentReservations.map((reservation) => (
+                  <div
+                    key={reservation.id}
+                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
+                        <span className="text-orange-600 font-medium text-sm">
+                          {reservation.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{reservation.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {reservation.time} • {reservation.guests} guests
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {reservation.status === 'confirmed' ? (
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                      ) : (
+                        <Clock className="h-5 w-5 text-yellow-500" />
+                      )}
+                      <span className={`text-xs font-medium ${
+                        reservation.status === 'confirmed' 
+                          ? 'text-green-600' 
+                          : 'text-yellow-600'
+                      }`}>
+                        {reservation.status}
                       </span>
                     </div>
-                    <div>
-                      <p className="font-medium text-gray-900">{reservation.name}</p>
-                      <p className="text-sm text-gray-500">
-                        {reservation.time} • {reservation.guests} guests
-                      </p>
-                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    {reservation.status === 'confirmed' ? (
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                    ) : (
-                      <Clock className="h-5 w-5 text-yellow-500" />
-                    )}
-                    <span className={`text-xs font-medium ${
-                      reservation.status === 'confirmed' 
-                        ? 'text-green-600' 
-                        : 'text-yellow-600'
-                    }`}>
-                      {reservation.status}
-                    </span>
-                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                  <p className="text-gray-500 text-sm">No reservations found for today</p>
+                  <p className="text-gray-400 text-xs mt-1">
+                    Reservations will appear here once customers book tables
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
           </CardContent>
         </Card>
@@ -288,31 +287,41 @@ export function DashboardOverview() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {todayMenu.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div>
-                    <p className="font-medium text-gray-900">{item.name}</p>
-                    <p className="text-sm text-gray-500">{item.orders} orders today</p>
+              {todayMenu.length > 0 ? (
+                todayMenu.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  >
+                    <div>
+                      <p className="font-medium text-gray-900">{item.name}</p>
+                      <p className="text-sm text-gray-500">{item.orders} orders today</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {item.status === 'available' ? (
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                      ) : (
+                        <AlertTriangle className="h-5 w-5 text-yellow-500" />
+                      )}
+                      <span className={`text-xs font-medium ${
+                        item.status === 'available' 
+                          ? 'text-green-600' 
+                          : 'text-yellow-600'
+                      }`}>
+                        {item.status === 'low-stock' ? 'Low Stock' : 'Available'}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    {item.status === 'available' ? (
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                    ) : (
-                      <AlertTriangle className="h-5 w-5 text-yellow-500" />
-                    )}
-                    <span className={`text-xs font-medium ${
-                      item.status === 'available' 
-                        ? 'text-green-600' 
-                        : 'text-yellow-600'
-                    }`}>
-                      {item.status === 'low-stock' ? 'Low Stock' : 'Available'}
-                    </span>
-                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                  <p className="text-gray-500 text-sm">No menu data available</p>
+                  <p className="text-gray-400 text-xs mt-1">
+                    Menu items and order statistics will appear here
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
           </CardContent>
         </Card>

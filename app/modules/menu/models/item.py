@@ -1,6 +1,7 @@
 from typing import Optional, List, TYPE_CHECKING
 from decimal import Decimal
 from uuid import UUID
+from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from pydantic import field_validator
 from app.shared.database.base import RestaurantTenantBaseModel
@@ -91,8 +92,8 @@ class MenuItemRead(MenuItemBase):
     organization_id: UUID
     restaurant_id: UUID
     category_id: Optional[UUID] = None
-    created_at: str
-    updated_at: str
+    created_at: datetime
+    updated_at: datetime
 
 
 class MenuItemReadWithCategory(MenuItemRead):

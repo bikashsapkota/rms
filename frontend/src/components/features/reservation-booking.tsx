@@ -142,7 +142,25 @@ export function ReservationBooking({ initialAvailability, prefillData }: Reserva
       setLoading(false);
 
     } catch (err) {
-      setError('Failed to create reservation. Please try again.');
+      console.error('Error creating reservation:', err);
+      
+      // Extract meaningful error message from the response
+      let errorMessage = 'Failed to create reservation. Please try again.';
+      if (err instanceof Error) {
+        errorMessage = `Error: ${err.message}`;
+      } else if (typeof err === 'object' && err !== null && 'response' in err) {
+        // Handle API response errors
+        const response = (err as any).response;
+        if (response?.data?.detail) {
+          errorMessage = `API Error: ${response.data.detail}`;
+        } else if (response?.status) {
+          errorMessage = `HTTP ${response.status}: ${response.statusText || 'Unknown error'}`;
+        }
+      } else if (typeof err === 'string') {
+        errorMessage = `Error: ${err}`;
+      }
+      
+      setError(errorMessage);
       setLoading(false);
     }
   };

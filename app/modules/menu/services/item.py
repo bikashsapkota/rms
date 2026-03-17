@@ -1,4 +1,5 @@
 from typing import List, Optional
+from uuid import UUID
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select, and_
 from fastapi import HTTPException, status
@@ -191,6 +192,15 @@ class MenuItemService:
         restaurant_id: str,
     ) -> List[MenuItemPublic]:
         """Get public menu for customers."""
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         statement = select(MenuItem, MenuCategory).join(
             MenuCategory,
             and_(
@@ -199,7 +209,7 @@ class MenuItemService:
             ),
             isouter=True,
         ).where(
-            MenuItem.restaurant_id == restaurant_id,
+            MenuItem.restaurant_id == restaurant_uuid,
             MenuItem.is_available == True,
         ).order_by(MenuCategory.sort_order, MenuItem.name)
         

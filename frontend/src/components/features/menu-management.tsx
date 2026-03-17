@@ -100,24 +100,11 @@ export function MenuManagement() {
         setMenuItems(transformedItems);
       } catch (error) {
         console.error('Error fetching menu data:', error);
-        setError('Failed to load menu data. Using demo data.');
+        setError(`Failed to load menu data: ${error instanceof Error ? error.message : 'Unknown error'}. Please check your database connection and ensure the backend is properly configured.`);
         
-        // Fallback to demo data if API fails
-        setCategories([
-          { id: '1', name: 'Appetizers', description: 'Start your meal with these delicious options' },
-          { id: '2', name: 'Main Courses', description: 'Our signature entrees and hearty dishes' },
-          { id: '3', name: 'Desserts', description: 'Sweet endings to your dining experience' }
-        ]);
-        setMenuItems([
-          {
-            id: '1',
-            name: 'Demo Item',
-            description: 'This is demo data - backend connection failed',
-            price: 16.99,
-            category: 'Appetizers',
-            isAvailable: true
-          }
-        ]);
+        // No fallback data - show the real error
+        setCategories([]);
+        setMenuItems([]);
       } finally {
         setLoading(false);
       }

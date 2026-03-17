@@ -1,11 +1,13 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile, Query, Path as PathParam
 from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlmodel import select
 from app.shared.database.session import get_session
 from app.shared.auth.deps import get_tenant_context, TenantContext, require_manager
 from uuid import UUID
 import uuid
 from app.modules.menu.models.item import (
+    MenuItem,
     MenuItemCreate,
     MenuItemUpdate,
     MenuItemRead,
@@ -50,29 +52,40 @@ async def list_items(
             detail="Restaurant context required",
         )
     
-    items = await MenuItemService.get_items(
-        session=session,
-        organization_id=tenant_context.organization_id,
-        restaurant_id=tenant_context.restaurant_id,
-        category_id=category_id,
-        skip=skip,
-        limit=limit,
-        include_unavailable=include_unavailable,
-    )
-    
-    # Get items with category details
-    detailed_items = []
-    for item in items:
-        item_data = await MenuItemService.get_item_with_category(
-            session=session,
-            item_id=str(item.id),
-            organization_id=tenant_context.organization_id,
-            restaurant_id=tenant_context.restaurant_id,
+    try:
+        # Direct query to avoid UUID conversion issues
+        statement = select(MenuItem).where(
+            MenuItem.organization_id == tenant_context.organization_id,
+            MenuItem.restaurant_id == tenant_context.restaurant_id,
         )
-        if item_data:
-            detailed_items.append(MenuItemReadWithCategory(**item_data))
-    
-    return detailed_items
+        
+        if category_id:
+            statement = statement.where(MenuItem.category_id == category_id)
+        
+        if not include_unavailable:
+            statement = statement.where(MenuItem.is_available == True)
+        
+        statement = statement.order_by(MenuItem.name)
+        statement = statement.offset(skip).limit(limit)
+        
+        result = await session.exec(statement)
+        items = result.all()
+        
+        # Filter out any items with empty names as a safety measure
+        valid_items = []
+        for item in items:
+            if item.name and item.name.strip():
+                valid_items.append(item)
+        
+        return valid_items
+        
+    except Exception as e:
+        # Log the error for debugging
+        print(f"Error in menu items route: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to retrieve menu items: {str(e)}",
+        )
 
 
 @router.post("/", response_model=MenuItemRead, status_code=status.HTTP_201_CREATED)

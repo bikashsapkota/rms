@@ -36,8 +36,19 @@ class CustomerService:
         """Get availability for customers (public endpoint)."""
         # Get restaurant info for organization_id
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)
@@ -118,8 +129,19 @@ class CustomerService:
         """Create a reservation for a customer (public endpoint)."""
         # Get restaurant info
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)
@@ -181,8 +203,19 @@ class CustomerService:
         """Add customer to waitlist (public endpoint)."""
         # Get restaurant info
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)
@@ -250,8 +283,19 @@ class CustomerService:
         """Get reservation status for a customer (public endpoint)."""
         # Get restaurant info
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)
@@ -298,8 +342,19 @@ class CustomerService:
         """Cancel a reservation (public endpoint)."""
         # Get restaurant info
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)
@@ -356,8 +411,19 @@ class CustomerService:
         """Get waitlist status for a customer (public endpoint)."""
         # Get restaurant info
         from app.shared.models.restaurant import Restaurant
+        from uuid import UUID
+        
+        # Convert string restaurant_id to UUID for database query
+        try:
+            restaurant_uuid = UUID(restaurant_id)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid restaurant ID format",
+            )
+        
         restaurant_stmt = select(Restaurant).where(
-            Restaurant.id == restaurant_id,
+            Restaurant.id == restaurant_uuid,
             Restaurant.is_active == True,
         )
         restaurant_result = await session.exec(restaurant_stmt)

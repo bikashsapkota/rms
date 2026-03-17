@@ -4,6 +4,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from app.shared.database.session import get_session
 from app.shared.auth.deps import get_tenant_context, TenantContext, require_manager
 from app.modules.menu.models.category import (
+    MenuCategory,
     MenuCategoryCreate,
     MenuCategoryUpdate,
     MenuCategoryRead,
@@ -29,29 +30,38 @@ async def list_categories(
             detail="Restaurant context required",
         )
     
-    categories = await MenuCategoryService.get_categories(
-        session=session,
-        organization_id=tenant_context.organization_id,
-        restaurant_id=tenant_context.restaurant_id,
-        skip=skip,
-        limit=limit,
-        include_inactive=include_inactive,
-    )
-    
-    return [
-        MenuCategoryRead(
-            id=str(cat.id),
-            name=cat.name,
-            description=cat.description,
-            sort_order=cat.sort_order,
-            is_active=cat.is_active,
-            organization_id=str(cat.organization_id),
-            restaurant_id=str(cat.restaurant_id),
-            created_at=cat.created_at.isoformat(),
-            updated_at=cat.updated_at.isoformat(),
+    try:
+        # Direct query to debug the issue
+        from sqlmodel import select
+        statement = select(MenuCategory).where(
+            MenuCategory.organization_id == tenant_context.organization_id,
+            MenuCategory.restaurant_id == tenant_context.restaurant_id,
         )
-        for cat in categories
-    ]
+        
+        if not include_inactive:
+            statement = statement.where(MenuCategory.is_active == True)
+        
+        statement = statement.order_by(MenuCategory.sort_order, MenuCategory.name)
+        statement = statement.offset(skip).limit(limit)
+        
+        result = await session.exec(statement)
+        categories = result.all()
+        
+        # Filter out any categories with empty names as a safety measure
+        valid_categories = []
+        for cat in categories:
+            if cat.name and cat.name.strip():
+                valid_categories.append(cat)
+        
+        return valid_categories
+        
+    except Exception as e:
+        # Log the error for debugging
+        print(f"Error in categories route: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to retrieve categories: {str(e)}",
+        )
 
 
 @router.post("/", response_model=MenuCategoryRead, status_code=status.HTTP_201_CREATED)
@@ -75,17 +85,7 @@ async def create_category(
         restaurant_id=tenant_context.restaurant_id,
     )
     
-    return MenuCategoryRead(
-        id=str(category.id),
-        name=category.name,
-        description=category.description,
-        sort_order=category.sort_order,
-        is_active=category.is_active,
-        organization_id=str(category.organization_id),
-        restaurant_id=str(category.restaurant_id),
-        created_at=category.created_at.isoformat(),
-        updated_at=category.updated_at.isoformat(),
-    )
+    return category
 
 
 @router.get("/{category_id}", response_model=MenuCategoryReadWithItems)
@@ -140,17 +140,7 @@ async def update_category(
         restaurant_id=tenant_context.restaurant_id,
     )
     
-    return MenuCategoryRead(
-        id=str(category.id),
-        name=category.name,
-        description=category.description,
-        sort_order=category.sort_order,
-        is_active=category.is_active,
-        organization_id=str(category.organization_id),
-        restaurant_id=str(category.restaurant_id),
-        created_at=category.created_at.isoformat(),
-        updated_at=category.updated_at.isoformat(),
-    )
+    return category
 
 
 @router.delete("/{category_id}")
